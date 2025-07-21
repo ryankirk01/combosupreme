@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
@@ -7,7 +7,13 @@ const FREEPAY_CHECKOUT_URL = 'https://app.freepaybr.com/payment/checkout/1bcd807
 
 export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Garante que o objeto Audio seja criado apenas no lado do cliente
+    audioRef.current = new Audio('/sounds/purchase.mp3');
+    audioRef.current.preload = 'auto';
+  }, []);
 
   const handleRedirectToCheckout = () => {
     setIsLoading(true);
@@ -42,7 +48,6 @@ export default function CheckoutForm() {
                 </>
             )}
         </Button>
-        <audio ref={audioRef} src="/sounds/purchase.mp3" preload="auto"></audio>
     </div>
   );
 }

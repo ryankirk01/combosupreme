@@ -19,7 +19,7 @@ const items = [
 export default function ShopSection({ score, onProceed }: ShopSectionProps) {
   const [ambition, setAmbition] = useState(score);
   const [purchasedItems, setPurchasedItems] = useState<string[]>([]);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handlePurchase = (itemCost: number, itemId: string) => {
     if (ambition >= itemCost && !purchasedItems.includes(itemId)) {
@@ -30,6 +30,14 @@ export default function ShopSection({ score, onProceed }: ShopSectionProps) {
       setPurchasedItems([...purchasedItems, itemId]);
     }
   };
+  
+  // Efeito para carregar o áudio no lado do cliente
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      audioRef.current = new Audio('/sounds/purchase.mp3');
+      audioRef.current.preload = 'auto';
+    }
+  });
 
   return (
     <Card className="w-full max-w-5xl bg-card/80 backdrop-blur-sm border border-primary/20 animate-fade-in-up">
@@ -83,7 +91,6 @@ export default function ShopSection({ score, onProceed }: ShopSectionProps) {
           </Button>
           <p className="text-xs text-muted-foreground mt-2">Você terá uma chance única de finalizar sua coleção.</p>
         </div>
-        <audio ref={audioRef} src="/sounds/purchase.mp3" preload="auto"></audio>
       </CardContent>
     </Card>
   );
