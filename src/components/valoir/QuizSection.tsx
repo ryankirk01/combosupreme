@@ -23,10 +23,10 @@ const quizQuestions = [
     question: 'Qual seu estilo ideal de presença?',
     isImageQuestion: true,
     answers: [
-      { text: 'Luxo agressivo', points: 15, image: 'https://placehold.co/200x300', hint: 'aggressive luxury' },
-      { text: 'Autoridade silenciosa', points: 15, image: 'https://placehold.co/200x300', hint: 'quiet authority' },
-      { text: 'Presença de respeito', points: 15, image: 'https://placehold.co/200x300', hint: 'respectful presence' },
-      { text: 'Todas acima', points: 20, image: 'https://placehold.co/200x300', hint: 'all styles' },
+      { text: 'Luxo agressivo', points: 15, image: 'https://images.unsplash.com/photo-1595932433481-9122a272a813?q=80&w=400&h=600&auto=format&fit=crop', hint: 'aggressive luxury' },
+      { text: 'Autoridade silenciosa', points: 15, image: 'https://images.unsplash.com/photo-1617294864861-a393d4215451?q=80&w=400&h=600&auto=format&fit=crop', hint: 'quiet authority' },
+      { text: 'Presença de respeito', points: 15, image: 'https://images.unsplash.com/photo-1588731234159-839963151475?q=80&w=400&h=600&auto=format&fit=crop', hint: 'respectful presence' },
+      { text: 'Todas acima', points: 20, image: 'https://images.unsplash.com/photo-1629196599201-a1d73ab63068?q=80&w=400&h=600&auto=format&fit=crop', hint: 'all styles' },
     ],
     pointsLabel: 'Estilo'
   },
@@ -41,7 +41,6 @@ const quizQuestions = [
     pointsLabel: 'Ambição'
   },
 ];
-const totalPoints = quizQuestions.reduce((total, q) => total + Math.max(...q.answers.map(a => a.points)), 0);
 
 type QuizSectionProps = {
   onComplete: (score: number) => void;
@@ -73,6 +72,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+  const totalPoints = quizQuestions.reduce((total, q) => total + Math.max(...q.answers.map(a => a.points)), 0);
 
   return (
     <Card className="relative w-full max-w-4xl bg-card/80 backdrop-blur-sm border border-primary/20 animate-fade-in-up">
@@ -102,7 +102,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {currentQuestion.answers.map((answer, index) => (
                 <button key={index} onClick={() => handleAnswer(answer.points)} className="group text-left relative overflow-hidden rounded-lg border-2 border-primary/20 hover:border-primary hover:scale-105 focus:border-primary focus:outline-none transition-all transform-gpu">
-                  <Image src={answer.image!} alt={answer.text} width={200} height={300} className="w-full h-auto object-cover transition-transform group-hover:scale-110" data-ai-hint={answer.hint} />
+                  <Image src={answer.image!} alt={answer.text} width={200} height={300} className="w-full h-full object-cover transition-transform group-hover:scale-110" data-ai-hint={answer.hint} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   <p className="absolute bottom-0 left-0 p-4 font-headline text-xl text-white">{answer.text}</p>
                 </button>

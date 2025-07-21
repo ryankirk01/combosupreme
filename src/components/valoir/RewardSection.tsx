@@ -29,8 +29,8 @@ export default function RewardSection({ score, onProceed }: RewardSectionProps) 
       </p>
 
       <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-2xl">
-        <ProductImage src="https://placehold.co/400x400" alt="VALOIR Watch" width={400} height={400} hint="luxury watch" />
-        <ProductImage src="https://placehold.co/400x400" alt="VALOIR Chain" width={400} height={400} hint="cuban chain" />
+        <ProductImage src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31c?q=80&w=800&h=800&auto=format&fit=crop" alt="VALOIR Watch" width={400} height={400} hint="luxury watch" />
+        <ProductImage src="https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=800&h=800&auto=format&fit=crop" alt="VALOIR Chain" width={400} height={400} hint="cuban chain" />
       </div>
 
       <div className="flex flex-col items-center gap-4 bg-card/50 p-6 rounded-lg border border-primary/10">

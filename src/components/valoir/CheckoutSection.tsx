@@ -3,8 +3,7 @@ import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { Button } from '@/components/ui/button';
-import { MessageCircle, ShoppingCart, AlertTriangle } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import ProductImage from './ProductImage';
 import TestimonialCard from './TestimonialCard';
 import CheckoutForm from './CheckoutForm';
@@ -34,7 +33,7 @@ export default function CheckoutSection() {
             <CardContent>
               <div className="flex items-center gap-4">
                 <div className="w-24 h-24 shrink-0">
-                  <ProductImage src="https://placehold.co/100x100" alt="Combo Valoir" width={100} height={100} hint="watch chain" className="p-1" />
+                  <ProductImage src="https://images.unsplash.com/photo-1620625634522-800c74291316?q=80&w=600&h=600&auto=format&fit=crop" alt="Combo Valoir" width={100} height={100} hint="watch chain" className="p-1" />
                 </div>
                 <div>
                   <h3 className="font-bold text-lg">Combo VALOIR</h3>

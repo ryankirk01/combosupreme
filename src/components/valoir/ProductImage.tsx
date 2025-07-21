@@ -13,13 +13,13 @@ type ProductImageProps = {
 
 export default function ProductImage({ src, alt, className, width, height, hint }: ProductImageProps) {
   return (
-    <Card className={cn("shine-effect bg-card/50 border-primary/20 p-2", className)}>
+    <Card className={cn("shine-effect bg-card/50 border-primary/20 p-2 aspect-square", className)}>
       <Image
         src={src}
         alt={alt}
         width={width}
         height={height}
-        className="object-contain w-full h-auto rounded-md"
+        className="object-cover w-full h-full rounded-md"
         data-ai-hint={hint}
       />
     </Card>
