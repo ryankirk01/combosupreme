@@ -1,117 +1,96 @@
 'use client';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowRight } from 'lucide-react';
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: 'Nome deve ter pelo menos 2 caracteres.' }),
-  email: z.string().email({ message: 'Email inválido.' }),
-  cardNumber: z.string().min(13, { message: 'Número do cartão inválido.' }).max(19, { message: 'Número do cartão inválido.' }).regex(/^\d+$/, { message: 'Apenas números são permitidos.'}),
-  expiry: z.string().regex(/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/, { message: 'Data inválida (MM/AA).' }),
-  cvc: z.string().min(3, { message: 'CVC inválido.' }).max(4, { message: 'CVC inválido.' }).regex(/^\d+$/, { message: 'Apenas números são permitidos.'}),
-});
+import { ArrowRight, Copy } from 'lucide-react';
+import { generatePix, GeneratePixOutput } from '@/ai/flows/generate-pix-flow';
+import { Skeleton } from '@/components/ui/skeleton';
+import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function CheckoutForm() {
-    const { toast } = useToast();
-    const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      cardNumber: '',
-      expiry: '',
-      cvc: '',
-    },
-  });
+  const { toast } = useToast();
+  const [pixData, setPixData] = useState<GeneratePixOutput | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-        title: "🏆 Compra Realizada com Sucesso!",
-        description: "Seu Combo VALOIR está a caminho. Você receberá os detalhes no seu e-mail.",
-        className: "bg-primary text-primary-foreground border-primary",
-    });
+  const handleGeneratePix = async () => {
+    setIsLoading(true);
+    try {
+      const data = await generatePix({ value: 67.00, customerName: 'Cliente Valoir' });
+      setPixData(data);
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: 'Erro ao gerar PIX',
+        description: 'Não foi possível gerar o código PIX. Tente novamente.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (pixData?.pixCopyPaste) {
+      navigator.clipboard.writeText(pixData.pixCopyPaste);
+      toast({
+        title: 'Copiado!',
+        description: 'Código PIX copiado para a área de transferência.',
+        className: 'bg-primary text-primary-foreground border-primary',
+      });
+    }
+  };
+
+  if (pixData) {
+    return (
+      <div className="space-y-4 text-center animate-fade-in-up">
+        <h2 className="font-headline text-2xl text-primary">Pague com PIX para Finalizar</h2>
+        <p className="text-muted-foreground">Escaneie o QR Code com o app do seu banco.</p>
+        <div className="flex justify-center">
+            <Image
+                src={pixData.qrCodeUrl}
+                alt="PIX QR Code"
+                width={256}
+                height={256}
+                className="rounded-lg border-4 border-primary p-1 bg-white"
+            />
+        </div>
+        <p className="text-muted-foreground">Ou copie o código abaixo:</p>
+        <Card className="bg-muted/50 border-dashed">
+            <CardContent className="p-3">
+                <div className="flex items-center gap-2">
+                    <p className="text-sm font-mono break-all text-left flex-1">
+                        {pixData.pixCopyPaste}
+                    </p>
+                    <Button variant="ghost" size="icon" onClick={copyToClipboard}>
+                        <Copy className="h-5 w-5" />
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+        <p className="text-sm font-bold text-amber-300">Após o pagamento, o seu pedido será confirmado automaticamente.</p>
+      </div>
+    );
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nome Completo</FormLabel>
-              <FormControl>
-                <Input placeholder="Seu nome no cartão" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>E-mail</FormLabel>
-              <FormControl>
-                <Input type="email" placeholder="seu.email@exemplo.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="cardNumber"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Número do Cartão</FormLabel>
-              <FormControl>
-                <Input placeholder="0000 0000 0000 0000" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="grid grid-cols-2 gap-4">
-          <FormField
-            control={form.control}
-            name="expiry"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Validade</FormLabel>
-                <FormControl>
-                  <Input placeholder="MM/AA" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="cvc"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>CVC</FormLabel>
-                <FormControl>
-                  <Input placeholder="123" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <Button type="submit" size="lg" className="w-full font-headline text-xl tracking-wider py-7 transition-transform hover:scale-105 active:scale-100">
-          FINALIZAR COMPRA <ArrowRight className="ml-2" />
-        </Button>
-      </form>
-    </Form>
+    <div className="flex flex-col items-center justify-center space-y-4">
+        <h2 className="font-headline text-2xl text-center">Forma de Pagamento: PIX</h2>
+        <p className="text-muted-foreground text-center">Clique no botão abaixo para gerar seu código PIX e finalizar a compra com segurança.</p>
+        {isLoading ? (
+            <div className="w-full space-y-4">
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-8 w-3/4 mx-auto" />
+            </div>
+        ) : (
+            <Button
+                onClick={handleGeneratePix}
+                size="lg"
+                className="w-full font-headline text-xl tracking-wider py-7 transition-transform hover:scale-105 active:scale-100"
+            >
+                GERAR CÓDIGO PIX <ArrowRight className="ml-2" />
+            </Button>
+        )}
+    </div>
   );
 }
