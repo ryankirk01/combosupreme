@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import CountdownTimer from './CountdownTimer';
 import ProductImage from './ProductImage';
+import { Gem } from 'lucide-react';
 
 type RewardSectionProps = {
   score: number;
@@ -8,8 +9,18 @@ type RewardSectionProps = {
 };
 
 export default function RewardSection({ score, onProceed }: RewardSectionProps) {
+  const getStatus = (score: number) => {
+    if (score > 45) return 'NÍVEL SUPREMO';
+    if (score > 35) return 'NÍVEL DOMINANTE';
+    return 'NÍVEL NOTÁVEL';
+  }
+
   return (
     <div className="flex flex-col items-center justify-center text-center p-4 md:p-8 rounded-xl bg-card/80 backdrop-blur-sm border border-primary/20 max-w-4xl animate-fade-in-up">
+      <div className="mb-4 inline-flex items-center justify-center gap-2 text-2xl font-bold text-primary bg-card/50 py-2 px-4 rounded-lg border border-primary/20">
+        <Gem className="h-7 w-7" />
+        <span>{getStatus(score)} ALCANÇADO!</span>
+      </div>
       <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider [text-shadow:0_0_20px_hsl(var(--primary)/0.6)]">
         🏆 OFERTA EXCLUSIVA DESBLOQUEADA
       </h1>
