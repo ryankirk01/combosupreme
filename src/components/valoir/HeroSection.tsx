@@ -9,7 +9,7 @@ export default function HeroSection({ onStart }: HeroSectionProps) {
   return (
     <div className="flex flex-col items-center justify-center text-center p-8 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20 max-w-2xl animate-fade-in-up">
       <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider">
-        ⚔️ DESAFIO VALOIR
+        ⚔️ DESAFIO DOMINANTE SUPREME
       </h1>
       <p className="mt-4 text-lg md:text-xl max-w-lg text-foreground/80">
         Você tem 3 minutos para provar que está pronto para ostentar respeito. Desbloqueie o Combo VALOIR por apenas <span className="font-bold text-primary">R$67</span>.
