@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import HeroSection from '@/components/valoir/HeroSection';
 import QuizSection from '@/components/valoir/QuizSection';
+import ShopSection from '@/components/valoir/ShopSection';
 import RewardSection from '@/components/valoir/RewardSection';
 import CheckoutSection from '@/components/valoir/CheckoutSection';
 
-type GameState = 'hero' | 'quiz' | 'reward' | 'checkout';
+type GameState = 'hero' | 'quiz' | 'shop' | 'reward' | 'checkout';
 
 export default function Home() {
   const [gameState, setGameState] = useState<GameState>('hero');
@@ -18,10 +19,16 @@ export default function Home() {
   }, []);
 
   const startQuiz = () => setGameState('quiz');
-  const showReward = (finalScore: number) => {
+  
+  const showShop = (finalScore: number) => {
     setScore(finalScore);
+    setGameState('shop');
+  };
+
+  const showReward = () => {
     setGameState('reward');
   };
+
   const showCheckout = () => setGameState('checkout');
 
   const renderGameState = () => {
@@ -29,7 +36,9 @@ export default function Home() {
       case 'hero':
         return <HeroSection onStart={startQuiz} />;
       case 'quiz':
-        return <QuizSection onComplete={showReward} />;
+        return <QuizSection onComplete={showShop} />;
+      case 'shop':
+        return <ShopSection score={score} onProceed={showReward} />;
       case 'reward':
         return <RewardSection score={score} onProceed={showCheckout} />;
       case 'checkout':

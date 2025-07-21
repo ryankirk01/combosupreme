@@ -56,8 +56,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
     if (currentQuestionIndex < quizQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      const finalScore = Math.round((newScore / totalPoints) * 100);
-      onComplete(finalScore);
+      onComplete(newScore);
     }
   };
 
