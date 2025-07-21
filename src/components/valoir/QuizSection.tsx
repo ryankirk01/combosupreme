@@ -23,10 +23,10 @@ const quizQuestions = [
     question: 'Qual seu estilo ideal de presença?',
     isImageQuestion: true,
     answers: [
-      { text: 'Luxo agressivo', points: 15, image: 'https://images.unsplash.com/photo-1595932433481-9122a272a813?q=80&w=400&h=600&auto=format&fit=crop', hint: 'aggressive luxury' },
-      { text: 'Autoridade silenciosa', points: 15, image: 'https://images.unsplash.com/photo-1617294864861-a393d4215451?q=80&w=400&h=600&auto=format&fit=crop', hint: 'quiet authority' },
-      { text: 'Presença de respeito', points: 15, image: 'https://images.unsplash.com/photo-1588731234159-839963151475?q=80&w=400&h=600&auto=format&fit=crop', hint: 'respectful presence' },
-      { text: 'Todas acima', points: 20, image: 'https://images.unsplash.com/photo-1629196599201-a1d73ab63068?q=80&w=400&h=600&auto=format&fit=crop', hint: 'all styles' },
+      { text: 'Luxo agressivo', points: 15, image: 'https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=400&h=600&auto=format&fit=crop', hint: 'cuban chain' },
+      { text: 'Autoridade silenciosa', points: 15, image: 'https://images.unsplash.com/photo-1612817159949-195b6eb9e31c?q=80&w=400&h=600&auto=format&fit=crop', hint: 'luxury watch' },
+      { text: 'Presença de respeito', points: 15, image: 'https://images.unsplash.com/photo-1619119159385-d6d91544cea2?q=80&w=400&h=600&auto=format&fit=crop', hint: 'man suit' },
+      { text: 'Todas acima', points: 20, image: 'https://images.unsplash.com/photo-1620625634522-800c74291316?q=80&w=400&h=600&auto=format&fit=crop', hint: 'watch chain' },
     ],
     pointsLabel: 'Estilo'
   },
