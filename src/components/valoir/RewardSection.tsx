@@ -16,7 +16,7 @@ export default function RewardSection({ score, onProceed }: RewardSectionProps) 
   }
 
   return (
-    <div className="flex flex-col items-center justify-center text-center p-4 md:p-8 rounded-xl bg-card/80 backdrop-blur-sm border border-primary/20 max-w-4xl animate-fade-in-up">
+    <div className="flex flex-col items-center justify-center text-center p-4 md:p-8 rounded-xl bg-card/80 backdrop-blur-sm border border-primary/20 max-w-4xl animate-fade-in-up shadow-2xl shadow-primary/20">
       <div className="mb-4 inline-flex items-center justify-center gap-2 text-2xl font-bold text-primary bg-card/50 py-2 px-4 rounded-lg border border-primary/20">
         <Gem className="h-7 w-7" />
         <span>{getStatus(score)} ALCANÇADO!</span>
@@ -33,14 +33,14 @@ export default function RewardSection({ score, onProceed }: RewardSectionProps) 
         <ProductImage src="https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=800&h=800&auto=format&fit=crop" alt="VALOIR Chain" width={400} height={400} hint="cuban chain" />
       </div>
 
-      <div className="flex flex-col items-center gap-4 bg-card/50 p-6 rounded-lg border border-primary/10">
-        <p className="font-headline text-2xl text-foreground/70">OFERTA DESBLOQUEADA</p>
+      <div className="flex flex-col items-center gap-4 bg-card/50 p-6 rounded-lg border border-primary/10 shadow-lg shadow-primary/10">
+        <p className="font-headline text-2xl text-foreground/70 tracking-widest">OFERTA DESBLOQUEADA</p>
         <div className="flex items-baseline gap-4">
           <span className="text-3xl text-muted-foreground line-through">R$379</span>
-          <span className="font-headline text-6xl text-primary">R$67</span>
+          <span className="font-headline text-6xl text-primary [text-shadow:0_0_10px_hsl(var(--primary)/0.5)]">R$67</span>
         </div>
         <p className="text-sm text-amber-300/80">Oferta desbloqueada apenas uma vez.</p>
-        <div className="mt-4 flex items-center gap-4 bg-background/50 px-4 py-2 rounded-md">
+        <div className="mt-4 flex items-center gap-4 bg-background/50 px-4 py-2 rounded-md border border-border">
           <span className="text-foreground/80 font-headline tracking-widest">A OFERTA TERMINA EM:</span>
           <CountdownTimer initialMinutes={5} onComplete={() => {}} className="font-mono text-2xl font-bold tracking-widest text-primary" />
         </div>

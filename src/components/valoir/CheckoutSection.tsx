@@ -16,7 +16,7 @@ export default function CheckoutSection() {
         <p className="text-lg text-foreground/80 mt-2">Finalize sua conquista. Estoque limitado.</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-        <Card className="bg-card border-primary/20 shadow-lg shadow-primary/5">
+        <Card className="bg-card/80 border-primary/20 shadow-lg shadow-primary/10">
           <CardHeader>
             <CardTitle className="font-headline text-3xl text-center lg:text-left">Informações de Pagamento</CardTitle>
           </CardHeader>
@@ -54,7 +54,7 @@ export default function CheckoutSection() {
             </CardContent>
           </Card>
           
-          <div className="space-y-2 p-4 rounded-lg bg-destructive/10 border border-destructive/30">
+          <div className="space-y-2 p-4 rounded-lg bg-destructive/10 border border-destructive/30 shadow-md shadow-destructive/10">
             <p className="text-center font-bold text-destructive flex items-center justify-center gap-2"><AlertTriangle size={20} /> Restam apenas 17 combos no estoque!</p>
             <Progress value={17} className="h-2 [&>div]:bg-destructive" />
           </div>
