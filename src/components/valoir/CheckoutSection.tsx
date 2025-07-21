@@ -24,7 +24,9 @@ export default function CheckoutSection() {
               <CardTitle className="font-headline text-3xl text-center lg:text-left">Informações de Pagamento</CardTitle>
             </CardHeader>
             <CardContent>
-              <CheckoutForm />
+              <div className="shine-effect p-4 rounded-lg">
+                <CheckoutForm />
+              </div>
             </CardContent>
           </Card>
         </div>

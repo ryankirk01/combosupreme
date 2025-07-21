@@ -18,7 +18,11 @@ export default function HeroSection({ onStart }: HeroSectionProps) {
         <span className="text-foreground/80 font-headline tracking-widest">TEMPO RESTANTE:</span>
         <CountdownTimer initialMinutes={3} onComplete={onStart} className="font-mono text-2xl font-bold tracking-widest text-primary" />
       </div>
-      <Button onClick={onStart} size="lg" className="font-headline text-2xl tracking-widest px-12 py-8 transition-transform duration-300 hover:scale-105 active:scale-100 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30">
+      <Button 
+        onClick={onStart} 
+        size="lg" 
+        className="font-headline text-2xl tracking-widest px-12 py-8 transition-all duration-300 hover:scale-105 active:scale-100 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 animate-pulse-glow"
+      >
         ENTRAR NO DESAFIO
       </Button>
     </div>

@@ -35,7 +35,7 @@ export default function RewardSection({ score, onProceed }: RewardSectionProps) 
 
       <div className="flex flex-col items-center gap-4 bg-card/50 p-6 rounded-lg border border-primary/10 shadow-lg shadow-primary/10">
         <p className="font-headline text-2xl text-foreground/70 tracking-widest">OFERTA DESBLOQUEADA</p>
-        <div className="flex items-baseline gap-4">
+        <div className="shine-effect flex items-baseline gap-4 rounded-lg p-2">
           <span className="text-3xl text-muted-foreground line-through">R$379</span>
           <span className="font-headline text-6xl text-primary [text-shadow:0_0_10px_hsl(var(--primary)/0.5)]">R$67</span>
         </div>
@@ -44,7 +44,11 @@ export default function RewardSection({ score, onProceed }: RewardSectionProps) 
           <span className="text-foreground/80 font-headline tracking-widest">A OFERTA TERMINA EM:</span>
           <CountdownTimer initialMinutes={5} onComplete={() => {}} className="font-mono text-2xl font-bold tracking-widest text-primary" />
         </div>
-        <Button onClick={onProceed} size="lg" className="font-headline text-2xl tracking-widest px-12 py-8 mt-4 transition-transform duration-300 hover:scale-105 active:scale-100 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30">
+        <Button 
+          onClick={onProceed} 
+          size="lg" 
+          className="font-headline text-2xl tracking-widest px-12 py-8 mt-4 transition-all duration-300 hover:scale-105 active:scale-100 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 animate-pulse-glow"
+        >
           FINALIZAR COMPRA
         </Button>
       </div>

@@ -77,7 +77,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
     <Card className="relative w-full max-w-4xl bg-card/80 backdrop-blur-sm border border-primary/20 animate-fade-in-up shadow-2xl shadow-primary/10">
        {showPoints && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center animate-fade-in-up">
-          <span className="font-headline text-5xl text-primary [text-shadow:0_0_15px_hsl(var(--primary)/0.8)]">
+          <span className="font-headline text-6xl md:text-8xl text-primary [text-shadow:0_0_25px_hsl(var(--primary)/0.8),0_0_50px_hsl(var(--primary)/0.5)]">
             +{lastPoints} {currentQuestion.pointsLabel}!
           </span>
         </div>
@@ -91,7 +91,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
               <span>{score} {currentQuestion.pointsLabel}</span>
             </div>
           </div>
-          <Progress value={progress} className="h-2 [&>div]:bg-primary" />
+          <Progress value={progress} className="h-2 shine-effect [&>div]:bg-primary" />
           <CardTitle className="font-headline text-3xl md:text-4xl text-center mt-6 min-h-[8rem] flex items-center justify-center p-4">
             {currentQuestion.question}
           </CardTitle>
