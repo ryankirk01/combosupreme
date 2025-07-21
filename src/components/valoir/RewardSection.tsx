@@ -10,7 +10,7 @@ type RewardSectionProps = {
 export default function RewardSection({ score, onProceed }: RewardSectionProps) {
   return (
     <div className="flex flex-col items-center justify-center text-center p-4 md:p-8 rounded-xl bg-card/80 backdrop-blur-sm border border-primary/20 max-w-4xl animate-fade-in-up">
-      <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider">
+      <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider [text-shadow:0_0_20px_hsl(var(--primary)/0.6)]">
         🏆 OFERTA EXCLUSIVA DESBLOQUEADA
       </h1>
       <p className="mt-4 text-lg md:text-xl max-w-2xl text-foreground/80">
@@ -29,7 +29,7 @@ export default function RewardSection({ score, onProceed }: RewardSectionProps) 
           <span className="font-headline text-6xl text-primary">R$67</span>
         </div>
         <p className="text-sm text-amber-300/80">Oferta desbloqueada apenas uma vez.</p>
-        <div className="mt-4 flex items-center gap-4">
+        <div className="mt-4 flex items-center gap-4 bg-background/50 px-4 py-2 rounded-md">
           <span className="text-foreground/80 font-headline tracking-widest">A OFERTA TERMINA EM:</span>
           <CountdownTimer initialMinutes={5} onComplete={() => {}} className="font-mono text-2xl font-bold tracking-widest text-primary" />
         </div>

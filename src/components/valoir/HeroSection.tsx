@@ -8,7 +8,7 @@ type HeroSectionProps = {
 export default function HeroSection({ onStart }: HeroSectionProps) {
   return (
     <div className="flex flex-col items-center justify-center text-center p-8 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20 max-w-2xl animate-fade-in-up">
-      <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider">
+      <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider [text-shadow:0_0_15px_hsl(var(--primary)/0.5)]">
         ⚔️ DESAFIO DOMINANTE SUPREME
       </h1>
       <p className="mt-4 text-lg md:text-xl max-w-lg text-foreground/80">

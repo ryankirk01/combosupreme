@@ -4,7 +4,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ShoppingCart } from 'lucide-react';
+import { MessageCircle, ShoppingCart, AlertTriangle } from 'lucide-react';
 import ProductImage from './ProductImage';
 import TestimonialCard from './TestimonialCard';
 import CheckoutForm from './CheckoutForm';
@@ -13,11 +13,11 @@ export default function CheckoutSection() {
   return (
     <div className="w-full max-w-6xl mx-auto p-4 animate-fade-in-up">
       <div className="text-center mb-12">
-        <h1 className="font-headline text-5xl text-primary tracking-wider">QUASE LÁ, CAMPEÃO</h1>
+        <h1 className="font-headline text-5xl text-primary tracking-wider [text-shadow:0_0_15px_hsl(var(--primary)/0.5)]">QUASE LÁ, CAMPEÃO</h1>
         <p className="text-lg text-foreground/80 mt-2">Finalize sua conquista. Estoque limitado.</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-        <Card className="bg-card border-border">
+        <Card className="bg-card border-primary/20 shadow-lg shadow-primary/5">
           <CardHeader>
             <CardTitle className="font-headline text-3xl text-center lg:text-left">Informações de Pagamento</CardTitle>
           </CardHeader>
@@ -55,9 +55,9 @@ export default function CheckoutSection() {
             </CardContent>
           </Card>
           
-          <div className="space-y-2">
-            <p className="text-center font-bold text-primary">Restam apenas 17 combos no estoque!</p>
-            <Progress value={17} className="h-2 [&>div]:bg-primary" />
+          <div className="space-y-2 p-4 rounded-lg bg-destructive/10 border border-destructive/30">
+            <p className="text-center font-bold text-destructive flex items-center justify-center gap-2"><AlertTriangle size={20} /> Restam apenas 17 combos no estoque!</p>
+            <Progress value={17} className="h-2 [&>div]:bg-destructive" />
           </div>
 
           <TestimonialCard name="Marcos L." review="Chegou rápido e a qualidade é surreal. Todo mundo pergunta onde comprei." />
