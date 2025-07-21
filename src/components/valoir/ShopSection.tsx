@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ProductImage from './ProductImage';
 import { Gem, ArrowRight, CheckCircle } from 'lucide-react';
+import { playPurchaseSound } from '@/lib/utils';
 
 type ShopSectionProps = {
   score: number;
@@ -19,26 +20,15 @@ const items = [
 export default function ShopSection({ score, onProceed }: ShopSectionProps) {
   const [ambition, setAmbition] = useState(score);
   const [purchasedItems, setPurchasedItems] = useState<string[]>([]);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handlePurchase = (itemCost: number, itemId: string) => {
     if (ambition >= itemCost && !purchasedItems.includes(itemId)) {
-      if(audioRef.current) {
-        audioRef.current.play();
-      }
+      playPurchaseSound();
       setAmbition(ambition - itemCost);
       setPurchasedItems([...purchasedItems, itemId]);
     }
   };
   
-  // Efeito para carregar o áudio no lado do cliente
-  useState(() => {
-    if (typeof window !== 'undefined') {
-      audioRef.current = new Audio('/sounds/purchase.mp3');
-      audioRef.current.preload = 'auto';
-    }
-  });
-
   return (
     <Card className="w-full max-w-5xl bg-card/80 backdrop-blur-sm border border-primary/20 animate-fade-in-up">
       <CardHeader className="text-center">
