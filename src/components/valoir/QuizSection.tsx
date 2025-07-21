@@ -24,7 +24,7 @@ const quizQuestions = [
     isImageQuestion: true,
     answers: [
       { text: 'Luxo agressivo', points: 15, image: 'https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=400&h=600&auto=format&fit=crop', hint: 'cuban chain' },
-      { text: 'Autoridade silenciosa', points: 15, image: 'https://images.unsplash.com/photo-1612817159949-195b6eb9e31c?q=80&w=400&h=600&auto=format&fit=crop', hint: 'luxury watch' },
+      { text: 'relógio cravejado branco', points: 15, image: 'https://images.unsplash.com/photo-1612817159949-195b6eb9e31c?q=80&w=400&h=600&auto=format&fit=crop', hint: 'luxury watch' },
       { text: 'Presença de respeito', points: 15, image: 'https://images.unsplash.com/photo-1619119159385-d6d91544cea2?q=80&w=400&h=600&auto=format&fit=crop', hint: 'man suit' },
       { text: 'Todas acima', points: 20, image: 'https://images.unsplash.com/photo-1620625634522-800c74291316?q=80&w=400&h=600&auto=format&fit=crop', hint: 'watch chain' },
     ],
