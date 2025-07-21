@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ProductImage from './ProductImage';
@@ -19,9 +19,13 @@ const items = [
 export default function ShopSection({ score, onProceed }: ShopSectionProps) {
   const [ambition, setAmbition] = useState(score);
   const [purchasedItems, setPurchasedItems] = useState<string[]>([]);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handlePurchase = (itemCost: number, itemId: string) => {
     if (ambition >= itemCost && !purchasedItems.includes(itemId)) {
+      if(audioRef.current) {
+        audioRef.current.play();
+      }
       setAmbition(ambition - itemCost);
       setPurchasedItems([...purchasedItems, itemId]);
     }
@@ -79,6 +83,7 @@ export default function ShopSection({ score, onProceed }: ShopSectionProps) {
           </Button>
           <p className="text-xs text-muted-foreground mt-2">Você terá uma chance única de finalizar sua coleção.</p>
         </div>
+        <audio ref={audioRef} src="/sounds/purchase.mp3" preload="auto"></audio>
       </CardContent>
     </Card>
   );

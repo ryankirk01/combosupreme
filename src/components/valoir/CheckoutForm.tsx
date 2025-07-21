@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
@@ -7,10 +7,17 @@ const FREEPAY_CHECKOUT_URL = 'https://app.freepaybr.com/payment/checkout/1bcd807
 
 export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleRedirectToCheckout = () => {
     setIsLoading(true);
-    window.location.href = FREEPAY_CHECKOUT_URL;
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+    // Adiciona um pequeno atraso para o som tocar antes do redirecionamento
+    setTimeout(() => {
+      window.location.href = FREEPAY_CHECKOUT_URL;
+    }, 300); 
   };
 
   return (
@@ -35,6 +42,7 @@ export default function CheckoutForm() {
                 </>
             )}
         </Button>
+        <audio ref={audioRef} src="/sounds/purchase.mp3" preload="auto"></audio>
     </div>
   );
 }
