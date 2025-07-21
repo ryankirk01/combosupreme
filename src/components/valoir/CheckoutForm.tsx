@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowRight, Copy } from 'lucide-react';
+import { ArrowRight, Copy, Loader2 } from 'lucide-react';
 import { generatePix, GeneratePixOutput } from '@/ai/flows/generate-pix-flow';
 import { Skeleton } from '@/components/ui/skeleton';
 import Image from 'next/image';
@@ -18,11 +18,11 @@ export default function CheckoutForm() {
     try {
       const data = await generatePix({ value: 67.00, customerName: 'Cliente Valoir' });
       setPixData(data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       toast({
         title: 'Erro ao gerar PIX',
-        description: 'Não foi possível gerar o código PIX. Tente novamente.',
+        description: error.message || 'Não foi possível gerar o código PIX. Tente novamente.',
         variant: 'destructive',
       });
     } finally {
@@ -53,6 +53,7 @@ export default function CheckoutForm() {
                 width={256}
                 height={256}
                 className="rounded-lg border-4 border-primary p-1 bg-white"
+                unoptimized // Necessário para fontes externas não configuradas
             />
         </div>
         <p className="text-muted-foreground">Ou copie o código abaixo:</p>
@@ -77,20 +78,24 @@ export default function CheckoutForm() {
     <div className="flex flex-col items-center justify-center space-y-4">
         <h2 className="font-headline text-2xl text-center">Forma de Pagamento: PIX</h2>
         <p className="text-muted-foreground text-center">Clique no botão abaixo para gerar seu código PIX e finalizar a compra com segurança.</p>
-        {isLoading ? (
-            <div className="w-full space-y-4">
-                <Skeleton className="h-16 w-full" />
-                <Skeleton className="h-8 w-3/4 mx-auto" />
-            </div>
-        ) : (
-            <Button
-                onClick={handleGeneratePix}
-                size="lg"
-                className="w-full font-headline text-xl tracking-wider py-7 transition-transform hover:scale-105 active:scale-100"
-            >
-                GERAR CÓDIGO PIX <ArrowRight className="ml-2" />
-            </Button>
-        )}
+        
+        <Button
+            onClick={handleGeneratePix}
+            disabled={isLoading}
+            size="lg"
+            className="w-full font-headline text-xl tracking-wider py-7 transition-transform hover:scale-105 active:scale-100"
+        >
+            {isLoading ? (
+                <>
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                    GERANDO...
+                </>
+            ) : (
+                <>
+                    GERAR CÓDIGO PIX <ArrowRight className="ml-2" />
+                </>
+            )}
+        </Button>
     </div>
   );
 }

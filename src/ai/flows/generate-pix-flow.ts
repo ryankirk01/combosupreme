@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview Simula a geração de um pagamento PIX.
+ * @fileOverview Gera um pagamento PIX utilizando a API da Freepix.
  * 
  * - generatePix - Gera um QR Code e código Copia e Cola para pagamento PIX.
  * - GeneratePixInput - Tipo de entrada para a função.
@@ -9,6 +9,7 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
+import "dotenv/config";
 
 const GeneratePixInputSchema = z.object({
   value: z.number().describe('O valor do pagamento em BRL.'),
@@ -27,7 +28,7 @@ export async function generatePix(input: GeneratePixInput): Promise<GeneratePixO
   return generatePixFlow(input);
 }
 
-// Simulação de uma chamada de API para um provedor de pagamento PIX (como a Freepix)
+// Implementação da chamada de API para a Freepix
 const generatePixFlow = ai.defineFlow(
   {
     name: 'generatePixFlow',
@@ -35,19 +36,52 @@ const generatePixFlow = ai.defineFlow(
     outputSchema: GeneratePixOutputSchema,
   },
   async (input) => {
-    // Em um cenário real, aqui você faria uma chamada para a API da Freepix
-    // com o valor e dados do cliente para gerar o PIX.
-    console.log(`Gerando PIX para ${input.customerName} no valor de R$${input.value.toFixed(2)}`);
+    const secretKey = process.env.FREEPIX_SECRET_KEY;
+    const companyId = process.env.FREEPIX_COMPANY_ID;
 
-    // Para este exemplo, vamos retornar dados mockados.
-    const fakePixCopyPaste = '00020126580014br.gov.bcb.pix0136123e4567-e12b-12d1-a456-4266554400005204000053039865802BR5913Cliente Valoir6009SAO PAULO62070503***6304E1A1';
-    
-    // Usamos um serviço que gera um QR code a partir de um texto.
-    const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${encodeURIComponent(fakePixCopyPaste)}`;
+    if (!secretKey || !companyId) {
+      throw new Error('Credenciais da Freepix não configuradas no ambiente.');
+    }
 
-    return {
-      qrCodeUrl: qrCodeApiUrl,
-      pixCopyPaste: fakePixCopyPaste,
-    };
+    try {
+      const response = await fetch('https://api.freepix.com.br/v1/charge/static', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Secret-Key': secretKey,
+        },
+        body: JSON.stringify({
+          companyId: companyId,
+          type: 'dynamic',
+          value: input.value,
+          customer: {
+            name: input.customerName,
+            taxId: '00000000000' // Tax ID é obrigatório, mas pode ser genérico
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Erro da API Freepix:', errorData);
+        throw new Error(`Erro ao gerar PIX: ${errorData.message || response.statusText}`);
+      }
+      
+      const data = await response.json();
+
+      if (!data.qrCodeImage || !data.brCode) {
+         throw new Error('Resposta da API Freepix inválida. Faltando qrCodeImage ou brCode.');
+      }
+
+      return {
+        qrCodeUrl: data.qrCodeImage,
+        pixCopyPaste: data.brCode,
+      };
+
+    } catch (error) {
+      console.error("Falha ao comunicar com a Freepix: ", error);
+      throw new Error('Não foi possível conectar ao serviço de pagamento. Tente novamente mais tarde.');
+    }
   }
 );
