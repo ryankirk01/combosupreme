@@ -3,7 +3,7 @@ import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { AlertTriangle, Youtube } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import ProductImage from './ProductImage';
 import TestimonialCard from './TestimonialCard';
 import CheckoutForm from './CheckoutForm';
@@ -17,25 +17,8 @@ export default function CheckoutSection() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         
-        {/* Coluna Esquerda: Vídeo e Pagamento */}
+        {/* Coluna Esquerda: Pagamento */}
         <div className="space-y-8">
-          <Card className="bg-card/80 border-primary/20 shadow-lg shadow-primary/10 overflow-hidden">
-            <CardHeader>
-                <CardTitle className="font-headline text-3xl text-center flex items-center justify-center gap-2 text-primary"><Youtube /> Veja o Unboxing</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <div className="aspect-video bg-black rounded-lg overflow-hidden border border-primary/20">
-                    <iframe 
-                        className="w-full h-full" 
-                        src="https://www.youtube.com/embed/L-0B3Ppv5Wk?autoplay=1&mute=1&loop=1&playlist=L-0B3Ppv5Wk&controls=0&showinfo=0&autohide=1&modestbranding=1"
-                        title="YouTube video player" 
-                        frameBorder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowFullScreen>
-                    </iframe>
-                </div>
-            </CardContent>
-          </Card>
           <Card className="bg-card/80 border-primary/20 shadow-lg shadow-primary/10">
             <CardHeader>
               <CardTitle className="font-headline text-3xl text-center lg:text-left">Informações de Pagamento</CardTitle>
