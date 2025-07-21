@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { ArrowRight } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Nome deve ter pelo menos 2 caracteres.' }),
@@ -39,7 +40,7 @@ export default function CheckoutForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="name"
@@ -108,7 +109,7 @@ export default function CheckoutForm() {
           />
         </div>
         <Button type="submit" size="lg" className="w-full font-headline text-xl tracking-wider py-7 transition-transform hover:scale-105 active:scale-100">
-          FINALIZAR COMPRA E CONQUISTAR
+          FINALIZAR COMPRA <ArrowRight className="ml-2" />
         </Button>
       </form>
     </Form>
