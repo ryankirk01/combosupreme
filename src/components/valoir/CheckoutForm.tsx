@@ -41,7 +41,7 @@ export default function CheckoutForm() {
             className="w-48 h-48 mb-4"
         />
 
-        <div className="w-full text-center bg-card/50 p-4 rounded-lg border border-green-500/50 shadow-[0_0_20px_theme(colors.green.500/0.3)] animate-pulse">
+        <div className="w-full text-center bg-card/50 p-4 rounded-lg border border-green-500/50 shadow-[0_0_20px_theme(colors.green.500/0.3)]">
             <p className="text-muted-foreground">Produto</p>
             <p className="font-bold text-lg text-foreground">COMBO Dominante Supreme</p>
             <p className="text-muted-foreground mt-2">Valor Total</p>
