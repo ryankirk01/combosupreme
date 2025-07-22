@@ -1,17 +1,17 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { CheckCircle, CreditCard, Gift, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
+import { CheckCircle, CreditCard, Gift, Loader2, ShieldCheck, Sparkles, Star } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
 
 const testimonials = [
-  { name: 'Ricardo Alves', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único.', image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Fernanda Lima', text: 'Chegou muito rápido! A embalagem é linda, perfeita pra presente. Meu namorado amou!', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Jorge Martins', text: 'O combo mudou meu visual. Todo lugar que eu vou alguém pergunta. Valeu cada centavo.', image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=200&h=200&auto=format&fit=crop' }
+  { name: 'Ricardo A.', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único. A entrega foi rápida e a embalagem impecável.', stars: 5 },
+  { name: 'Jorge M.', text: 'O combo mudou meu visual. Todo lugar que eu vou alguém pergunta. Me sinto mais confiante. Valeu cada centavo.', stars: 5 },
+  { name: 'Fernando L.', text: 'Chegou muito rápido! A qualidade do material é visível. Pesado, brilhante e exatamente como na foto. Comprarei novamente.', stars: 5 }
 ];
 
 const purchaseNotifications = [
@@ -97,17 +97,17 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
       <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-lg border-b border-primary/20">
         <div className="container mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center p-4 text-center">
           <h1 className="font-headline text-xl md:text-3xl text-primary tracking-widest">COMBO Dominante Supreme™</h1>
-          <p className="hidden md:block font-body text-lg text-foreground/80">O Combo Que Vai Mudar Seu Estilo</p>
+          <p className="hidden md:block font-body text-lg text-foreground/80">O Status Que Você Merece.</p>
         </div>
       </header>
       
       {notification && (
         <div 
           key={notification.key}
-          className="fixed bottom-0 left-1/2 -translate-x-1/2 z-50 bg-card border border-primary/30 p-4 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-3 animate-notification-float"
+          className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-card border border-primary/30 p-3 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-3 animate-notification-float"
         >
-           <CheckCircle className="text-primary h-6 w-6"/>
-           <p className="text-sm">{notification.name} comprou agora mesmo o COMBO Dominante Supreme!</p>
+           <CheckCircle className="text-primary h-5 w-5"/>
+           <p className="text-sm">{notification.name} acabou de garantir o COMBO!</p>
         </div>
       )}
 
@@ -128,19 +128,22 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
           </div>
           <h2 className="font-headline text-4xl md:text-7xl text-foreground tracking-wider text-shadow-gold">
-            De <span className="line-through text-foreground/50">R$299</span> por apenas <br className="md:hidden" /> <span className="text-primary">R$67</span>
+            De <span className="line-through text-foreground/50">R$299</span> por apenas <br className="md:hidden" /> <span className="text-primary">12x de R$5,58</span>
           </h2>
-          <p className="font-body text-lg md:text-2xl mt-4 text-foreground/80 max-w-2xl">Surpreenda. Impulsione seu status. Sinta-se invencível.</p>
+          <p className="font-body text-lg md:text-2xl mt-4 text-foreground/80 max-w-2xl">Ou R$67 à vista. Surpreenda. Impulsione seu status. Sinta-se invencível.</p>
           <div className="my-8 bg-card/50 border border-primary/20 rounded-lg p-4 flex flex-col items-center gap-2">
+            <p className="text-sm text-primary/80">OFERTA EXCLUSIVA TERMINA EM:</p>
             <CountdownTimer initialMinutes={15} className="font-mono text-3xl md:text-4xl text-primary font-bold" />
-            <p className="text-sm text-primary/80">A OFERTA ACABA EM</p>
           </div>
           <Button onClick={handleProceedToCheckout} size="lg" className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
-            Quero Meu Combo Agora
+            QUERO MEU COMBO AGORA
           </Button>
+           <p className="text-xs mt-4 text-foreground/60">VAGAS LIMITADAS. Compra 100% segura.</p>
         </section>
 
         <section className="py-16 md:py-20">
+           <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Arma Secreta do Homem de Respeito</h2>
+           <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">O COMBO Dominante Supreme não é apenas um acessório. É uma declaração. É a peça que faltava para solidificar sua imagem de poder e sucesso.</p>
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="w-full h-auto mb-5">
                 <ProductImage
@@ -154,20 +157,22 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             </div>
             <div className="text-center md:text-left">
               <h3 className="font-headline text-3xl md:text-4xl text-primary">Relógio Dominante™</h3>
+              <p className="mt-2 text-lg text-foreground/80">Construído para impressionar. Precisão e design que comunicam seu valor sem dizer uma palavra.</p>
               <ul className="mt-4 space-y-3 text-lg text-foreground/80 list-none p-0">
-                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Pulseira em Aço Inoxidável</li>
-                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Mostrador de Precisão Suíço</li>
-                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Vidro de Safira Antirrisco</li>
+                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Máquina Suíça: Pontualidade inquestionável.</li>
+                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Aço Inoxidável 904L: O mesmo dos relógios de luxo.</li>
+                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Vidro de Safira: À prova de riscos e distrações.</li>
               </ul>
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mt-12">
              <div className="text-center md:text-right md:order-2">
               <h3 className="font-headline text-3xl md:text-4xl text-primary">Corrente Supreme™</h3>
+              <p className="mt-2 text-lg text-foreground/80">O toque final que separa homens de meninos. O brilho do ouro que atrai olhares e impõe respeito.</p>
               <ul className="mt-4 space-y-3 text-lg text-foreground/80 list-none p-0">
-                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Corrente Cubana 5mm</li>
-                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Banhada a Ouro 18K</li>
-                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Fecho de Gaveta Seguro</li>
+                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Banho Quíntuplo de Ouro 18K: Brilho que dura.</li>
+                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Design Cubano Clássico: Atemporal e poderoso.</li>
+                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Fecho de Gaveta: Segurança e robustez.</li>
               </ul>
             </div>
             <ProductImage
@@ -182,35 +187,38 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         </section>
 
         <section className="py-16 md:py-20 text-center">
-            <h2 className="font-headline text-4xl md:text-5xl text-foreground">Sua Oportunidade Única</h2>
+            <h2 className="font-headline text-4xl md:text-5xl text-foreground">Sua Oportunidade Única de Ascensão</h2>
+            <p className="text-lg md:text-xl text-foreground/80 mt-2 max-w-2xl mx-auto">Você provou seu potencial. Agora, reivindique a recompensa.</p>
             <Card className="mt-8 max-w-2xl mx-auto bg-card/50 border-2 border-dashed border-primary/50 p-6 md:p-8">
                 {!isDiscountClaimed ? (
                     <>
                         <p className="font-headline text-2xl text-primary">VOCÊ FOI SELECIONADO</p>
-                        <p className="text-lg mt-2">Clique na caixa abaixo para revelar seu acesso exclusivo ao COMBO Dominante Supreme.</p>
+                        <p className="text-lg mt-2">Clique no presente abaixo para desbloquear seu acesso VIP ao COMBO Dominante Supreme.</p>
                         <button onClick={handleClaimDiscount} className="mt-6 animate-pulse-glow transition-transform hover:scale-105">
                            <Gift className="text-primary h-24 w-24 md:h-32 md:w-32"/>
                         </button>
                     </>
                 ) : (
                     <div className="animate-fade-in-up">
-                       <h3 className="font-headline text-2xl md:text-3xl text-primary">PARABÉNS!</h3>
-                       <p className="text-lg md:text-xl mt-2">Você ganhou <span className="font-bold text-primary">77% DE DESCONTO</span> e acesso ao preço final de <span className="font-bold text-primary">R$67</span>.</p>
+                       <h3 className="font-headline text-2xl md:text-3xl text-primary">PARABÉNS! ACESSO LIBERADO.</h3>
+                       <p className="text-lg md:text-xl mt-2">Você desbloqueou <span className="font-bold text-primary">77% DE DESCONTO</span>. Seu preço final é <span className="font-bold text-primary">R$67</span>.</p>
+                       <p className="text-muted-foreground mt-2 text-sm">(Esta oferta é pessoal e intransferível)</p>
                        <Button onClick={handleProceedToCheckout} size="lg" className="mt-8 font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
-                           Finalizar Pedido com Desconto
+                           GARANTIR MEU DESCONTO
                        </Button>
                     </div>
                 )}
             </Card>
         </section>
 
-
         <section className="py-16 md:py-20">
-          <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-12">Quem Comprou, Aprovou</h2>
+          <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-12">Quem Compra, Domina.</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map(item => (
-              <Card key={item.name} className="bg-card/50 border-primary/20 p-6 text-center">
-                <ProductImage src={item.image} alt={item.name} width={80} height={80} className="rounded-full mx-auto mb-4 border-2 border-primary" hint="man portrait"/>
+            {testimonials.map((item, index) => (
+              <Card key={index} className="bg-card/50 border-primary/20 p-6 text-center animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`}}>
+                <div className="flex text-primary justify-center mb-4">
+                  {[...Array(item.stars)].map((_, i) => <Star key={i} className="fill-current h-5 w-5" />)}
+                </div>
                 <p className="text-foreground/80 italic">"{item.text}"</p>
                 <h4 className="mt-4 font-bold text-lg text-primary">{item.name}</h4>
               </Card>
@@ -219,32 +227,33 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         </section>
         
         <section className="py-16 md:py-20">
-            <Card className="bg-card/50 border-primary/20 max-w-4xl mx-auto p-6 md:p-12">
+            <Card className="bg-card/50 border-2 border-primary/50 max-w-4xl mx-auto p-6 md:p-12 shadow-[0_0_30px_theme(colors.primary/0.2)]">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="text-center md:text-left">
-                        <h2 className="font-headline text-3xl md:text-4xl text-primary">Sua Satisfação ou seu Dinheiro de Volta.</h2>
-                        <p className="text-lg text-foreground/80 mt-4">Temos tanta confiança na qualidade do COMBO Dominante Supreme que oferecemos uma garantia incondicional de 7 dias. Se você não ficar 100% satisfeito, devolvemos seu dinheiro. Sem perguntas, sem burocracia.</p>
+                        <h2 className="font-headline text-3xl md:text-4xl text-primary">RISCO ZERO. RESPEITO TOTAL.</h2>
+                        <p className="text-lg text-foreground/80 mt-4">Temos tanta confiança no poder do COMBO Dominante Supreme que assumimos todo o risco. Você tem 7 dias de Garantia Incondicional. Se não sentir o impacto no seu visual e na sua confiança, devolvemos 100% do seu dinheiro. Simples assim.</p>
                     </div>
                     <div className="flex flex-col items-center justify-center space-y-4">
                         <ShieldCheck className="h-24 w-24 text-primary" />
-                         <p className="text-center font-bold text-xl">Compra 100% Segura</p>
+                         <p className="text-center font-bold text-xl">Compra 100% Segura e Garantida</p>
                     </div>
                 </div>
             </Card>
         </section>
 
         <section className="text-center py-16 md:py-20">
-            <h2 className="font-headline text-4xl md:text-5xl text-foreground">Não Deixe Para Depois</h2>
-            <p className="text-lg md:text-xl text-foreground/80 mt-2">Seu novo status está a um clique de distância.</p>
+            <h2 className="font-headline text-4xl md:text-5xl text-foreground">Sua Última Chance de Dominar</h2>
+            <p className="text-lg md:text-xl text-foreground/80 mt-2 max-w-2xl mx-auto">O tempo está se esgotando. Depois desta página, o preço volta para R$299. A decisão é sua.</p>
             <Card className="max-w-xl mx-auto mt-8 p-6 md:p-8 bg-card/50 border-primary/20 shadow-lg shadow-primary/20">
-                 <p className="text-lg">Receba seu <span className="font-bold text-primary">COMBO Dominante Supreme</span> em casa em até 7 dias úteis.</p>
+                 <p className="text-lg">Receba o símbolo da sua nova fase em até 7 dias úteis.</p>
                  <div className="flex justify-center items-center gap-4 my-4">
                     <CreditCard className="h-8 w-8 text-foreground/70" />
-                    <p className="font-bold text-2xl text-foreground">PIX</p>
+                    <p className="font-bold text-2xl text-foreground">PIX & CARTÃO</p>
                  </div>
                  <Button onClick={handleProceedToCheckout} size="lg" className="w-full font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
-                   Finalizar Pedido com Desconto
+                   FINALIZAR PEDIDO COM 77% OFF
                  </Button>
+                 <p className="text-xs mt-4 text-foreground/60">Pagamento processado pela FreePay, a plataforma mais segura do Brasil.</p>
             </Card>
         </section>
 
