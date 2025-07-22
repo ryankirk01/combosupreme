@@ -32,11 +32,12 @@ const quizQuestions = [
     pointsLabel: 'Estilo'
   },
   {
-    question: 'O que mais te representa hoje?',
-    answers: [
-      { text: 'Subir de nível', points: 15 },
-      { text: 'Ser referência', points: 15 },
-      { text: 'Impor respeito', points: 20 },
+    question: 'Qual a sua fome de sucesso?',
+    isTapQuestion: true,
+    answers: [ // Based on tap speed
+        { text: 'Ambicioso', points: 10 },
+        { text: 'Implacável', points: 15 },
+        { text: 'Lendário', points: 20 },
     ],
     pointsLabel: 'Ambição'
   },
@@ -74,8 +75,6 @@ const HoldButton = ({ onComplete }: { onComplete: (points: number, text: string)
       onComplete(finalLevel.points, finalLevel.text);
     };
     
-    const progress = (holdLevel / (levels.length - 1)) * 100;
-  
     return (
       <div className="flex flex-col items-center justify-center text-center">
         <button
@@ -99,6 +98,82 @@ const HoldButton = ({ onComplete }: { onComplete: (points: number, text: string)
           </div>
         </button>
       </div>
+    );
+};
+
+const TapChallenge = ({ onComplete, answers }: { onComplete: (points: number, text: string) => void; answers: { text: string; points: number }[] }) => {
+    const [taps, setTaps] = useState(0);
+    const [isTapping, setIsTapping] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(5);
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const maxTaps = 30;
+
+    useEffect(() => {
+        if (isTapping && timeLeft > 0) {
+            timerRef.current = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+        } else if (timeLeft === 0) {
+            endChallenge();
+        }
+        return () => { if (timerRef.current) clearTimeout(timerRef.current) };
+    }, [isTapping, timeLeft]);
+
+    const startChallenge = () => {
+        setTaps(0);
+        setTimeLeft(5);
+        setIsTapping(true);
+    };
+
+    const handleTap = () => {
+        if (!isTapping) {
+            startChallenge();
+        }
+        if (timeLeft > 0) {
+            setTaps(prev => Math.min(prev + 1, maxTaps));
+        }
+    };
+    
+    const endChallenge = () => {
+        if (!isTapping) return;
+        setIsTapping(false);
+        if (timerRef.current) clearTimeout(timerRef.current);
+        
+        let result;
+        if (taps < maxTaps * 0.5) { // < 15 taps
+            result = answers[0];
+        } else if (taps < maxTaps * 0.8) { // < 24 taps
+            result = answers[1];
+        } else { // >= 24 taps
+            result = answers[2];
+        }
+        onComplete(result.points, result.text);
+    };
+
+    const progress = (taps / maxTaps) * 100;
+
+    return (
+        <div className="flex flex-col items-center justify-center text-center w-full max-w-sm mx-auto">
+            {!isTapping && taps === 0 ? (
+                <Button
+                    onClick={handleTap}
+                    className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-2xl md:text-3xl text-primary-foreground bg-primary shadow-gold animate-pulse-glow"
+                >
+                    Atingir o Topo
+                </Button>
+            ) : (
+                <>
+                    <p className="font-mono text-5xl md:text-6xl text-primary font-bold mb-4">{timeLeft}</p>
+                    <Progress value={progress} className="h-4 w-full mb-4 shine-effect [&>div]:bg-primary" />
+                    <Button
+                        onClick={handleTap}
+                        onMouseUp={timeLeft === 0 ? endChallenge : undefined}
+                        className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-xl md:text-2xl text-primary-foreground bg-primary shadow-gold active:scale-95"
+                    >
+                       Toque Rápido!
+                       <span className="absolute text-5xl font-bold opacity-80">{taps}</span>
+                    </Button>
+                </>
+            )}
+        </div>
     );
 };
 
@@ -150,7 +225,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
             <p className="font-headline text-base md:text-lg text-primary tracking-wider">PERGUNTA {currentQuestionIndex + 1}/{quizQuestions.length}</p>
             <div className="flex items-center gap-2 text-primary font-bold text-lg md:text-xl bg-card/50 py-1 px-3 rounded-lg border border-primary/20">
               <Gem className="h-5 w-5" />
-              <span>{score} {currentQuestion.pointsLabel}</span>
+              <span>{score} PTS</span>
             </div>
           </div>
           <Progress value={progress} className="h-2 shine-effect [&>div]:bg-primary" />
@@ -183,6 +258,8 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
               <CarouselPrevious className="text-primary hover:text-primary-foreground border-primary hover:bg-primary" />
               <CarouselNext className="text-primary hover:text-primary-foreground border-primary hover:bg-primary" />
             </Carousel>
+          ) : currentQuestion.isTapQuestion ? (
+            <TapChallenge onComplete={handleAnswer} answers={currentQuestion.answers} />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl">
               {currentQuestion.answers.map((answer, index) => (
