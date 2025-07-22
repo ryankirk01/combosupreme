@@ -128,15 +128,15 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
           </div>
           <h2 className="font-headline text-4xl md:text-7xl text-foreground tracking-wider text-shadow-gold">
-            De <span className="line-through text-foreground/50">R$299</span> por apenas <br className="md:hidden" /> <span className="text-primary">12x de R$5,58</span>
+            De <span className="line-through text-foreground/50">R$299</span> por apenas <br className="md:hidden" /> <span className="text-primary">R$67</span>
           </h2>
-          <p className="font-body text-lg md:text-2xl mt-4 text-foreground/80 max-w-2xl">Ou R$67 à vista. Surpreenda. Impulsione seu status. Sinta-se invencível.</p>
+          <p className="font-body text-lg md:text-2xl mt-4 text-foreground/80 max-w-2xl">Pagamento único via PIX. Surpreenda. Impulsione seu status. Sinta-se invencível.</p>
           <div className="my-8 bg-card/50 border border-primary/20 rounded-lg p-4 flex flex-col items-center gap-2">
             <p className="text-sm text-primary/80">OFERTA EXCLUSIVA TERMINA EM:</p>
             <CountdownTimer initialMinutes={15} className="font-mono text-3xl md:text-4xl text-primary font-bold" />
           </div>
           <Button onClick={handleProceedToCheckout} size="lg" className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
-            QUERO MEU COMBO AGORA
+            QUERO MEU COMBO COM PIX
           </Button>
            <p className="text-xs mt-4 text-foreground/60">VAGAS LIMITADAS. Compra 100% segura.</p>
         </section>
@@ -156,24 +156,14 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 />
             </div>
             <div className="text-center md:text-left">
-              <h3 className="font-headline text-3xl md:text-4xl text-primary">Relógio Dominante™</h3>
-              <p className="mt-2 text-lg text-foreground/80">Construído para impressionar. Precisão e design que comunicam seu valor sem dizer uma palavra.</p>
-              <ul className="mt-4 space-y-3 text-lg text-foreground/80 list-none p-0">
-                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Máquina Suíça: Pontualidade inquestionável.</li>
-                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Aço Inoxidável 904L: O mesmo dos relógios de luxo.</li>
-                <li className="flex items-center justify-center md:justify-start gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Vidro de Safira: À prova de riscos e distrações.</li>
-              </ul>
+              <h3 className="font-headline text-3xl md:text-4xl text-primary">⌚ Relógio VALOIR™</h3>
+              <p className="mt-4 text-lg text-foreground/80">Um relógio marcante com pulseira de aço inoxidável, mostrador elegante e vidro resistente a riscos. Perfeito para quem quer se destacar com estilo e presença. Combina com qualquer ocasião, do casual ao sofisticado.</p>
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mt-12">
              <div className="text-center md:text-right md:order-2">
-              <h3 className="font-headline text-3xl md:text-4xl text-primary">Corrente Supreme™</h3>
-              <p className="mt-2 text-lg text-foreground/80">O toque final que separa homens de meninos. O brilho do ouro que atrai olhares e impõe respeito.</p>
-              <ul className="mt-4 space-y-3 text-lg text-foreground/80 list-none p-0">
-                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Banho Quíntuplo de Ouro 18K: Brilho que dura.</li>
-                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Design Cubano Clássico: Atemporal e poderoso.</li>
-                <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Fecho de Gaveta: Segurança e robustez.</li>
-              </ul>
+              <h3 className="font-headline text-3xl md:text-4xl text-primary">🔗 Corrente VALOIR™</h3>
+              <p className="mt-4 text-lg text-foreground/80">Corrente estilo cubana banhada a ouro 18K, com 5mm de espessura e acabamento premium. Brilho impressionante, feita para transmitir respeito, confiança e autoridade. Ideal para completar seu visual com atitude.</p>
             </div>
             <ProductImage
               src="https://i.imgur.com/LrEQVOb.jpeg"
@@ -247,8 +237,8 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             <Card className="max-w-xl mx-auto mt-8 p-6 md:p-8 bg-card/50 border-primary/20 shadow-lg shadow-primary/20">
                  <p className="text-lg">Receba o símbolo da sua nova fase em até 7 dias úteis.</p>
                  <div className="flex justify-center items-center gap-4 my-4">
-                    <CreditCard className="h-8 w-8 text-foreground/70" />
-                    <p className="font-bold text-2xl text-foreground">PIX & CARTÃO</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256" className="text-foreground/70"><path fill="currentColor" d="M140 160a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-60-12a12 12 0 1 0-12 12a12 12 0 0 0 12-12m108 12a12 12 0 1 0 12 12a12 12 0 0 0-12-12m-48-68.55V88a12 12 0 0 0 24 0V61.87a44 44 0 0 1 0-27.74V24a12 12 0 0 0-24 0v10.13a44 44 0 0 1 0 27.74m-64-27.74V24a12 12 0 0 0-24 0v10.13a44 44 0 0 0 0 27.74V88a12 12 0 0 0 24 0V65.87a44 44 0 0 0 0-27.74M220 38a58 58 0 0 0-32.46-52.1a12 12 0 0 0-11.08 21.8A34 34 0 0 1 204 64v3.45a60 60 0 0 0-29.4-18.06a12 12 0 0 0-9.2 22.52a36 36 0 0 1 0 32.18a12 12 0 0 0 9.2 22.52A60 60 0 0 0 204 145v110a12 12 0 0 0 24 0V43.87A57.84 57.84 0 0 0 220 38M36 38a58 58 0 0 1 32.46-52.1a12 12 0 1 1 11.08 21.8A34 34 0 0 0 52 64v3.45a60 60 0 0 1 29.4-18.06a12 12 0 1 1 9.2 22.52a36 36 0 0 0 0 32.18a12 12 0 1 1-9.2 22.52A60 60 0 0 1 52 145v110a12 12 0 0 1-24 0V43.87A57.84 57.84 0 0 1 36 38m104 20a58 58 0 0 0-32.46-52.1a12 12 0 1 0-11.08 21.8A34 34 0 0 1 124 64v3.45a60 60 0 0 0-29.4-18.06a12 12 0 1 0-9.2 22.52a36 36 0 0 1 0 32.18a12 12 0 1 0 9.2 22.52A60 60 0 0 0 124 145v110a12 12 0 0 0 24 0V43.87A57.84 57.84 0 0 0 140 38Z"/></svg>
+                    <p className="font-bold text-2xl text-foreground">PAGAMENTO VIA PIX</p>
                  </div>
                  <Button onClick={handleProceedToCheckout} size="lg" className="w-full font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
                    FINALIZAR PEDIDO COM 77% OFF
