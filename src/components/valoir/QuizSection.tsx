@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Gem, ArrowLeft, ArrowRight, Ship, Briefcase, Crown } from 'lucide-react';
-import Image from 'next/image';
+import { Gem, Ship, Briefcase, Crown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { playPurchaseSound } from '@/lib/utils';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -13,11 +12,12 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 const quizQuestions = [
   {
-    question: 'Você tem coragem de ser notado onde passa?',
-    answers: [
-      { text: 'Sim', points: 10 },
-      { text: 'Sempre', points: 15 },
-      { text: 'Estou pronto pra isso', points: 12 },
+    question: 'Qual seu nível de presença?',
+    isHoldingQuestion: true,
+    answers: [ // Based on hold duration
+      { text: 'Discreto', points: 8 },
+      { text: 'Notado', points: 12 },
+      { text: 'Dominante', points: 15 },
     ],
     pointsLabel: 'Presença'
   },
@@ -42,6 +42,66 @@ const quizQuestions = [
     pointsLabel: 'Ambição'
   },
 ];
+
+const HoldButton = ({ onComplete }: { onComplete: (points: number, text: string) => void }) => {
+    const [holdLevel, setHoldLevel] = useState(0); // 0, 1, 2
+    const [isHolding, setIsHolding] = useState(false);
+    const holdTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const holdIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  
+    const levels = [
+      { text: 'Discreto', points: 8, duration: 0 },
+      { text: 'Notado', points: 12, duration: 700 },
+      { text: 'Dominante', points: 15, duration: 1500 },
+    ];
+  
+    const handleMouseDown = () => {
+      setIsHolding(true);
+      holdTimeoutRef.current = setTimeout(() => {
+        // Not really used, interval drives level changes
+      }, levels[levels.length - 1].duration + 100);
+  
+      holdIntervalRef.current = setInterval(() => {
+        setHoldLevel(prev => (prev < levels.length - 1 ? prev + 1 : prev));
+      }, levels[1].duration);
+    };
+  
+    const handleMouseUp = () => {
+      setIsHolding(false);
+      if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
+      if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+      
+      const finalLevel = levels[holdLevel];
+      onComplete(finalLevel.points, finalLevel.text);
+    };
+    
+    const progress = (holdLevel / (levels.length - 1)) * 100;
+  
+    return (
+      <div className="flex flex-col items-center justify-center text-center">
+        <button
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
+          className="relative flex items-center justify-center w-48 h-48 md:w-56 md:h-56 rounded-full bg-card/80 border-4 border-primary/20 transition-all duration-300 transform active:scale-95 focus:outline-none"
+        >
+          <div className="absolute inset-0 rounded-full border-4 border-primary transition-all duration-500" style={{ transform: `scale(${0.8 + holdLevel * 0.1})`, opacity: isHolding ? 1 : 0 }}></div>
+          <div 
+            className="absolute inset-0 rounded-full border-t-4 border-t-primary animate-spin"
+            style={{ animationDuration: `${2 - holdLevel}s`, opacity: isHolding ? 0.5 + holdLevel * 0.25 : 0 }}
+          ></div>
+          
+          <div className="z-10 text-center">
+            <div className="font-headline text-2xl md:text-3xl text-primary transition-all duration-300">
+              {levels[holdLevel].text}
+            </div>
+            <div className="text-sm text-foreground/70 mt-1">Segure para confirmar</div>
+          </div>
+        </button>
+      </div>
+    );
+};
 
 type QuizSectionProps = {
   onComplete: (answers: string[]) => void;
@@ -99,8 +159,10 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
             {currentQuestion.question}
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          {currentQuestion.isCarouselQuestion ? (
+        <CardContent className="min-h-[300px] flex items-center justify-center">
+          {currentQuestion.isHoldingQuestion ? (
+            <HoldButton onComplete={handleAnswer} />
+          ) : currentQuestion.isCarouselQuestion ? (
             <Carousel className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto" opts={{ loop: true }}>
               <CarouselContent>
                 {currentQuestion.answers.map((answer, index) => (
