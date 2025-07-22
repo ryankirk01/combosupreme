@@ -169,7 +169,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
               </ul>
             </div>
             <ProductImage
-              src="https://placehold.co/600x600.png"
+              src="https://images.unsplash.com/photo-1616843649695-35a2c20a4439"
               alt="Corrente do COMBO Dominante Supreme"
               width={600}
               height={600}
