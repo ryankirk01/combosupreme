@@ -144,7 +144,7 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
         <section className="py-16 md:py-20">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <Card className="bg-card/50 border-primary/20 p-2 md:p-4 shine-effect hover:scale-105 transition-transform duration-300">
-              <Image src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31c?q=80&w=600&h=600&auto=format&fit=crop" alt="Relógio do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg w-full" data-ai-hint="luxury watch" />
+              <Image src="https://images.unsplash.com/photo-1721094052303-34e47087f226?q=80&w=512&h=512&auto=format&fit=crop" alt="Relógio do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg w-full" data-ai-hint="luxury watch" />
             </Card>
             <div className="text-center md:text-left">
               <h3 className="font-headline text-3xl md:text-4xl text-primary">Relógio Dominante™</h3>
