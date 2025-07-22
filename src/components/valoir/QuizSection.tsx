@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Gem } from 'lucide-react';
+import { Gem, ArrowLeft, ArrowRight, Ship, Briefcase, Crown } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { playPurchaseSound } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
 
 const quizQuestions = [
   {
@@ -21,12 +23,11 @@ const quizQuestions = [
   },
   {
     question: 'Qual seu estilo ideal de presença?',
-    isImageQuestion: true,
+    isCarouselQuestion: true,
     answers: [
-      { text: 'Luxo agressivo', points: 15, image: 'https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=400&h=600&auto=format&fit=crop', hint: 'cuban chain' },
-      { text: 'relógio cravejado branco', points: 15, image: 'https://images.unsplash.com/photo-1721094052303-34e47087f226?q=80&w=512&h=512&auto=format&fit=crop', hint: 'luxury watch' },
-      { text: 'Presença de respeito', points: 15, image: 'https://images.unsplash.com/photo-1619119159385-d6d91544cea2?q=80&w=400&h=600&auto=format&fit=crop', hint: 'man suit' },
-      { text: 'Todas acima', points: 20, image: 'https://images.unsplash.com/photo-1620625634522-800c74291316?q=80&w=400&h=600&auto=format&fit=crop', hint: 'watch chain' },
+      { text: 'O Navegador', points: 15, icon: Ship, description: 'Desbrava novos mares, confiante e imponente. Seu estilo é sobre liberdade e conquista.' },
+      { text: 'O CEO', points: 15, icon: Briefcase, description: 'Comanda a sala de reuniões. Cada detalhe do seu visual comunica poder e decisão.' },
+      { text: 'O Magnata', points: 20, icon: Crown, description: 'O topo da cadeia. Não segue tendências, ele as cria. Seu luxo é inquestionável.' },
     ],
     pointsLabel: 'Estilo'
   },
@@ -94,21 +95,33 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
             </div>
           </div>
           <Progress value={progress} className="h-2 shine-effect [&>div]:bg-primary" />
-          <CardTitle className="font-headline text-2xl md:text-4xl text-center mt-6 min-h-[6rem] md:min-h-[8rem] flex items-center justify-center p-2 md:p-4">
+          <CardTitle className="font-headline text-2xl md:text-4xl text-center mt-6 min-h-[6rem] md:min-h-[4rem] flex items-center justify-center p-2 md:p-4">
             {currentQuestion.question}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {currentQuestion.isImageQuestion ? (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
-              {currentQuestion.answers.map((answer, index) => (
-                <button key={index} onClick={() => handleAnswer(answer.points, answer.text)} className="group text-left relative overflow-hidden rounded-lg border-2 border-primary/20 hover:border-primary hover:scale-105 focus:border-primary focus:outline-none transition-all transform-gpu">
-                  <Image src={answer.image!} alt={answer.text} width={200} height={300} className="w-full h-full object-cover transition-transform group-hover:scale-110" data-ai-hint={answer.hint} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  <p className="absolute bottom-0 left-0 p-2 md:p-4 font-headline text-lg md:text-xl text-white [text-shadow:1px_1px_3px_black]">{answer.text}</p>
-                </button>
-              ))}
-            </div>
+          {currentQuestion.isCarouselQuestion ? (
+            <Carousel className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto" opts={{ loop: true }}>
+              <CarouselContent>
+                {currentQuestion.answers.map((answer, index) => (
+                  <CarouselItem key={index}>
+                    <div className="p-1">
+                      <Card 
+                        onClick={() => handleAnswer(answer.points, answer.text)}
+                        className="bg-card/70 border-2 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all cursor-pointer group text-center p-6 md:p-8"
+                      >
+                         <answer.icon className="h-16 w-16 md:h-20 md:w-20 mx-auto text-primary group-hover:scale-110 transition-transform" />
+                         <h3 className="font-headline text-2xl md:text-3xl mt-4 text-foreground">{answer.text}</h3>
+                         <p className="text-foreground/80 mt-2 h-16">{answer.description}</p>
+                         <p className="text-primary/80 mt-4">(+{answer.points} {currentQuestion.pointsLabel})</p>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="text-primary hover:text-primary-foreground border-primary hover:bg-primary" />
+              <CarouselNext className="text-primary hover:text-primary-foreground border-primary hover:bg-primary" />
+            </Carousel>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {currentQuestion.answers.map((answer, index) => (

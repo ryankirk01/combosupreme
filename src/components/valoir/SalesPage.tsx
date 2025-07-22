@@ -51,6 +51,8 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
         }
       } else {
         setIsDiagnosing(false);
+        // Fallback caso não haja respostas
+        setStyleDiagnosis("Seu estilo único mostra que você está pronto para um novo nível de presença. O COMBO Dominante Supreme foi feito para pessoas como você.");
       }
     }
     getDiagnosis();
@@ -80,7 +82,12 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
     };
 
     const intervalId = setInterval(showRandomNotification, 12000);
-    return () => clearInterval(intervalId);
+    const initialTimeout = setTimeout(showRandomNotification, 4000);
+    
+    return () => {
+      clearInterval(intervalId)
+      clearTimeout(initialTimeout);
+    };
   }, []);
 
   if (isDiagnosing) {
@@ -128,8 +135,8 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
           <div className="absolute inset-0 -z-10">
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
           </div>
-          <h2 className="font-headline text-4xl md:text-7xl text-foreground tracking-wider">
-            De <span className="line-through text-foreground/50">R$299</span> por apenas <br className="md:hidden" /> <span className="text-primary text-shadow-gold">R$67</span>
+          <h2 className="font-headline text-4xl md:text-7xl text-foreground tracking-wider text-shadow-gold">
+            De <span className="line-through text-foreground/50">R$299</span> por apenas <br className="md:hidden" /> <span className="text-primary">R$67</span>
           </h2>
           <p className="font-body text-lg md:text-2xl mt-4 text-foreground/80 max-w-2xl">Surpreenda. Impulsione seu status. Sinta-se invencível.</p>
           <div className="my-8 bg-card/50 border border-primary/20 rounded-lg p-4 flex flex-col items-center gap-2">
@@ -144,7 +151,7 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
         <section className="py-16 md:py-20">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <Card className="bg-card/50 border-primary/20 p-2 md:p-4 shine-effect hover:scale-105 transition-transform duration-300">
-              <Image src="https://images.unsplash.com/photo-1721094052303-34e47087f226?q=80&w=512&h=512&auto=format&fit=crop" alt="Relógio do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg w-full" data-ai-hint="luxury watch" />
+              <Image src="https://images.unsplash.com/photo-1721094052303-34e47087f226?q=80&w=600&h=600&auto=format&fit=crop" alt="Relógio do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg w-full" data-ai-hint="luxury watch" />
             </Card>
             <div className="text-center md:text-left">
               <h3 className="font-headline text-3xl md:text-4xl text-primary">Relógio Dominante™</h3>
@@ -199,7 +206,7 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map(item => (
               <Card key={item.name} className="bg-card/50 border-primary/20 p-6 text-center">
-                <Image src={item.image} alt={item.name} width={80} height={80} className="rounded-full mx-auto mb-4 border-2 border-primary"/>
+                <Image src={item.image} alt={item.name} width={80} height={80} className="rounded-full mx-auto mb-4 border-2 border-primary" data-ai-hint="man portrait"/>
                 <p className="text-foreground/80 italic">"{item.text}"</p>
                 <h4 className="mt-4 font-bold text-lg text-primary">{item.name}</h4>
               </Card>
