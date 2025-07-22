@@ -60,7 +60,7 @@ export default function SalesPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-lg border-b border-primary/20">
         <div className="container mx-auto flex justify-between items-center p-4">
-          <h1 className="font-headline text-3xl text-primary tracking-widest">VALOIR™</h1>
+          <h1 className="font-headline text-3xl text-primary tracking-widest">COMBO Dominante Supreme™</h1>
           <p className="hidden md:block font-body text-lg text-white/80">O Combo Que Vai Mudar Seu Estilo</p>
         </div>
       </header>
@@ -72,7 +72,7 @@ export default function SalesPage() {
           notification.visible ? 'animate-notification-in' : 'animate-notification-out'
         )}>
            <CheckCircle className="text-primary h-6 w-6"/>
-           <p className="text-sm">{notification.name} comprou agora mesmo o Combo VALOIR!</p>
+           <p className="text-sm">{notification.name} comprou agora mesmo o COMBO Dominante Supreme!</p>
         </div>
       )}
 
@@ -80,7 +80,7 @@ export default function SalesPage() {
         {/* Hero Section */}
         <section className="relative text-center py-20 md:py-32 min-h-[80vh] flex flex-col items-center justify-center">
           <div className="absolute inset-0 overflow-hidden -z-10">
-             <Image src="https://images.unsplash.com/photo-1620625634522-800c74291316?q=80&w=1920&h=1080&auto=format&fit=crop" alt="Combo VALOIR" layout="fill" objectFit="cover" className="opacity-30" />
+             <Image src="https://images.unsplash.com/photo-1620625634522-800c74291316?q=80&w=1920&h=1080&auto=format&fit=crop" alt="COMBO Dominante Supreme" layout="fill" objectFit="cover" className="opacity-30" />
              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
           </div>
           <h2 className="font-headline text-5xl md:text-7xl text-white tracking-wider">
@@ -100,10 +100,10 @@ export default function SalesPage() {
         <section className="py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <Card className="bg-card border-primary/20 p-4 shine-effect hover:scale-105 transition-transform duration-300">
-              <Image src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31c?q=80&w=600&h=600&auto=format&fit=crop" alt="Relógio VALOIR" width={600} height={600} className="rounded-lg" />
+              <Image src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31c?q=80&w=600&h=600&auto=format&fit=crop" alt="Relógio do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg" />
             </Card>
             <div className="text-left">
-              <h3 className="font-headline text-4xl text-primary">Relógio VALOIR™</h3>
+              <h3 className="font-headline text-4xl text-primary">Relógio Dominante™</h3>
               <ul className="mt-4 space-y-2 text-lg text-white/80">
                 <li className="flex items-center gap-3"><CheckCircle className="text-primary"/>Pulseira em Aço Inoxidável</li>
                 <li className="flex items-center gap-3"><CheckCircle className="text-primary"/>Mostrador de Precisão Suíço</li>
@@ -113,7 +113,7 @@ export default function SalesPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-center mt-12">
              <div className="text-right md:order-2">
-              <h3 className="font-headline text-4xl text-primary">Corrente VALOIR™</h3>
+              <h3 className="font-headline text-4xl text-primary">Corrente Supreme™</h3>
               <ul className="mt-4 space-y-2 text-lg text-white/80">
                 <li className="flex items-center justify-end gap-3"><CheckCircle className="text-primary"/>Corrente Cubana 5mm</li>
                 <li className="flex items-center justify-end gap-3"><CheckCircle className="text-primary"/>Banhada a Ouro 18K</li>
@@ -121,7 +121,7 @@ export default function SalesPage() {
               </ul>
             </div>
             <Card className="bg-card border-primary/20 p-4 shine-effect hover:scale-105 transition-transform duration-300 md:order-1">
-              <Image src="https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=600&h=600&auto=format&fit=crop" alt="Corrente VALOIR" width={600} height={600} className="rounded-lg" />
+              <Image src="https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=600&h=600&auto=format&fit=crop" alt="Corrente do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg" />
             </Card>
           </div>
         </section>
@@ -133,7 +133,7 @@ export default function SalesPage() {
                 {!isDiscountClaimed ? (
                     <>
                         <p className="font-headline text-2xl text-primary">VOCÊ FOI SELECIONADO</p>
-                        <p className="text-lg mt-2">Clique na caixa abaixo para revelar seu acesso exclusivo ao Combo VALOIR.</p>
+                        <p className="text-lg mt-2">Clique na caixa abaixo para revelar seu acesso exclusivo ao COMBO Dominante Supreme.</p>
                         <button onClick={handleClaimDiscount} className="mt-6 animate-pulse-glow transition-transform hover:scale-105">
                            <Gift className="text-primary h-32 w-32"/>
                         </button>
@@ -171,7 +171,7 @@ export default function SalesPage() {
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                         <h2 className="font-headline text-4xl text-primary">Sua Satisfação ou seu Dinheiro de Volta.</h2>
-                        <p className="text-lg text-white/80 mt-4">Temos tanta confiança na qualidade do Combo VALOIR que oferecemos uma garantia incondicional de 7 dias. Se você não ficar 100% satisfeito, devolvemos seu dinheiro. Sem perguntas, sem burocracia.</p>
+                        <p className="text-lg text-white/80 mt-4">Temos tanta confiança na qualidade do COMBO Dominante Supreme que oferecemos uma garantia incondicional de 7 dias. Se você não ficar 100% satisfeito, devolvemos seu dinheiro. Sem perguntas, sem burocracia.</p>
                     </div>
                     <div className="flex flex-col items-center justify-center space-y-4">
                         <ShieldCheck className="h-24 w-24 text-primary" />
@@ -186,7 +186,7 @@ export default function SalesPage() {
             <h2 className="font-headline text-5xl text-white">Não Deixe Para Depois</h2>
             <p className="text-xl text-white/80 mt-2">Seu novo status está a um clique de distância.</p>
             <Card className="max-w-xl mx-auto mt-8 p-8 bg-card border-primary/20 shadow-lg shadow-primary/20">
-                 <p className="text-lg">Receba seu <span className="font-bold text-primary">Combo VALOIR</span> em casa em até 7 dias úteis.</p>
+                 <p className="text-lg">Receba seu <span className="font-bold text-primary">COMBO Dominante Supreme</span> em casa em até 7 dias úteis.</p>
                  <div className="flex justify-center items-center gap-4 my-4">
                     <CreditCard className="h-8 w-8 text-white/70" />
                     <p className="font-bold text-2xl text-white">PIX</p>
@@ -202,13 +202,13 @@ export default function SalesPage() {
       {/* Footer */}
       <footer className="border-t border-primary/20 py-8 text-center text-white/50">
           <div className="container mx-auto">
-             <p className="font-headline text-2xl text-primary mb-2">VALOIR™</p>
+             <p className="font-headline text-2xl text-primary mb-2">COMBO Dominante Supreme™</p>
              <div className="flex justify-center gap-4 my-4">
                 <a href="#" className="hover:text-primary">Política de Troca</a>
                 <a href="#" className="hover:text-primary">Privacidade</a>
                 <a href="#" className="hover:text-primary">Suporte</a>
              </div>
-             <p>Instagram: @valoir.official</p>
+             <p>Instagram: @dominante.supreme.official</p>
              <p className="text-xs mt-4">Todos os direitos reservados © 2024</p>
           </div>
       </footer>

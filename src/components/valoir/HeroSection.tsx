@@ -12,7 +12,7 @@ export default function HeroSection({ onStart }: HeroSectionProps) {
         ⚔️ DESAFIO DOMINANTE SUPREME
       </h1>
       <p className="mt-4 text-lg md:text-xl max-w-lg text-foreground/80">
-        Você tem 3 minutos para provar que está pronto para ostentar respeito. Desbloqueie o Combo VALOIR por apenas <span className="font-bold text-primary">R$67</span>.
+        Você tem 3 minutos para provar que está pronto para ostentar respeito. Desbloqueie o COMBO Dominante Supreme por apenas <span className="font-bold text-primary">R$67</span>.
       </p>
       <div className="my-8 flex items-center gap-4">
         <span className="text-foreground/80 font-headline tracking-widest">TEMPO RESTANTE:</span>
