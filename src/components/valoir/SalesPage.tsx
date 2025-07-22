@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { cn } from '@/lib/utils';
 import { CheckCircle, CreditCard, Gift, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 
@@ -24,13 +23,12 @@ const purchaseNotifications = [
   'Beatriz de Curitiba, PR',
 ];
 
-const FREEPAY_CHECKOUT_URL = 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b';
-
 type SalesPageProps = {
   quizAnswers: string[];
+  onCheckout: () => void;
 }
 
-export default function SalesPage({ quizAnswers }: SalesPageProps) {
+export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
   const [isDiscountClaimed, setIsDiscountClaimed] = useState(false);
   const [notification, setNotification] = useState<{ name: string, key: number } | null>(null);
   const [styleDiagnosis, setStyleDiagnosis] = useState<string | null>(null);
@@ -64,11 +62,9 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
     setIsDiscountClaimed(true);
   };
   
-  const handleRedirectToCheckout = () => {
+  const handleProceedToCheckout = () => {
     playPurchaseSound();
-    setTimeout(() => {
-      window.location.href = FREEPAY_CHECKOUT_URL;
-    }, 300);
+    onCheckout();
   };
 
   useEffect(() => {
@@ -139,7 +135,7 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
             <CountdownTimer initialMinutes={15} className="font-mono text-3xl md:text-4xl text-primary font-bold" />
             <p className="text-sm text-primary/80">A OFERTA ACABA EM</p>
           </div>
-          <Button onClick={handleRedirectToCheckout} size="lg" className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
+          <Button onClick={handleProceedToCheckout} size="lg" className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
             Quero Meu Combo Agora
           </Button>
         </section>
@@ -188,7 +184,7 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
                     <div className="animate-fade-in-up">
                        <h3 className="font-headline text-2xl md:text-3xl text-primary">PARABÉNS!</h3>
                        <p className="text-lg md:text-xl mt-2">Você ganhou <span className="font-bold text-primary">77% DE DESCONTO</span> e acesso ao preço final de <span className="font-bold text-primary">R$67</span>.</p>
-                       <Button onClick={handleRedirectToCheckout} size="lg" className="mt-8 font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
+                       <Button onClick={handleProceedToCheckout} size="lg" className="mt-8 font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
                            Finalizar Pedido com Desconto
                        </Button>
                     </div>
@@ -234,7 +230,7 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
                     <CreditCard className="h-8 w-8 text-foreground/70" />
                     <p className="font-bold text-2xl text-foreground">PIX</p>
                  </div>
-                 <Button onClick={handleRedirectToCheckout} size="lg" className="w-full font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
+                 <Button onClick={handleProceedToCheckout} size="lg" className="w-full font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
                    Finalizar Pedido com Desconto
                  </Button>
             </Card>

@@ -5,8 +5,9 @@ import HeroSection from '@/components/valoir/HeroSection';
 import QuizSection from '@/components/valoir/QuizSection';
 import SalesPage from '@/components/valoir/SalesPage';
 import { cn } from '@/lib/utils';
+import CheckoutForm from '@/components/valoir/CheckoutForm';
 
-type GameState = 'hero' | 'quiz' | 'sales';
+type GameState = 'hero' | 'quiz' | 'sales' | 'checkout';
 
 export default function Home() {
   const [gameState, setGameState] = useState<GameState>('hero');
@@ -24,6 +25,10 @@ export default function Home() {
     setGameState('sales');
   };
 
+  const showCheckout = () => {
+    setGameState('checkout');
+  }
+
   const renderGameState = () => {
     switch (gameState) {
       case 'hero':
@@ -31,7 +36,9 @@ export default function Home() {
       case 'quiz':
         return <QuizSection onComplete={showSalesPage} />;
       case 'sales':
-        return <SalesPage quizAnswers={quizAnswers} />;
+        return <SalesPage quizAnswers={quizAnswers} onCheckout={showCheckout}/>;
+      case 'checkout':
+        return <CheckoutForm />;
       default:
         return <HeroSection onStart={startQuiz} />;
     }
@@ -46,7 +53,7 @@ export default function Home() {
 
   return (
     <main className={cn("relative flex min-h-screen flex-col items-center justify-center p-4 md:p-8 overflow-x-hidden bg-background", "animate-background-aurora")}>
-      <div className="w-full">
+      <div className="w-full max-w-7xl">
         {renderGameState()}
       </div>
     </main>
