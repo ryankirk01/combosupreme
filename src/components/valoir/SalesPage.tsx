@@ -143,7 +143,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         <section className="py-16 md:py-20">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <ProductImage
-              src="https://storage.googleapis.com/gcp-kms-prod-tokens/6379555f-87d3-4a1d-8f2a-e24177209ac7/z0pdp/60fca566-a367-4a41-b844-42b7811922c0.png"
+              src="https://storage.googleapis.com/gcp-kms-prod-tokens/6379555f-87d3-4a1d-8f2a-e24177209ac7/z0pdp/799863c3-3e14-419b-a010-85f269a92437.png"
               alt="Relógio do COMBO Dominante Supreme"
               width={600}
               height={600}
