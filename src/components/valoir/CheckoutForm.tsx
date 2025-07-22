@@ -26,7 +26,7 @@ const models = {
     name: 'Modelo Executivo',
     description: 'O elegante prateado para um visual sofisticado e moderno.',
     price: 'R$ 67,00',
-    checkoutUrl: 'https://app.freepaybr.com/payment/checkout/d9e8c7f6-a5b4-4c3d-8e7f-1a2b3c4d5e6f',
+    checkoutUrl: 'https://app.freepaybr.com/payment/checkout/530573f0-3d0d-47d5-81fd-9c5b539d4e82',
     image: 'https://i.imgur.com/PhXHR3F.png',
     hint: 'silver watch chain'
   },
