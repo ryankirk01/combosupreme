@@ -76,7 +76,7 @@ const HoldButton = ({ onComplete }: { onComplete: (points: number, text: string)
     };
     
     return (
-      <div className="flex flex-col items-center justify-center text-center">
+      <div className="flex flex-col items-center justify-center text-center select-none">
         <button
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
