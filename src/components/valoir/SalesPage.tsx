@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { CheckCircle, CreditCard, Gift, Loader2, ShieldCheck, Sparkles, Star } from 'lucide-react';
+import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
 
@@ -36,7 +36,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
 
   useEffect(() => {
     async function getDiagnosis() {
-      const fallbackDiagnosis = "Seu estilo é único e suas escolhas mostram que você está pronto para um novo nível de presença. O COMBO Dominante Supreme foi feito para pessoas como você.";
+      const fallbackDiagnosis = "Seu estilo é único e suas escolhas mostram que você está pronto para um novo nível de presença. O COMBO Dominante Supreme™ foi feito para pessoas como você.";
 
       if (quizAnswers.length > 0) {
         try {
@@ -143,12 +143,12 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
 
         <section className="py-16 md:py-20">
            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Arma Secreta do Homem de Respeito</h2>
-           <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">O COMBO Dominante Supreme não é apenas um acessório. É uma declaração. É a peça que faltava para solidificar sua imagem de poder e sucesso.</p>
+           <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">O COMBO Dominante Supreme™ não é apenas um acessório. É uma declaração. É a peça que faltava para solidificar sua imagem de poder e sucesso.</p>
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="w-full h-auto mb-5">
                 <ProductImage
                 src="https://i.imgur.com/cfbV6b0.png"
-                alt="Relógio do COMBO Dominante Supreme"
+                alt="Relógio do COMBO Dominante Supreme™"
                 width={600}
                 height={600}
                 hint="luxury watch"
@@ -167,7 +167,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             </div>
             <ProductImage
               src="https://i.imgur.com/LrEQVOb.jpeg"
-              alt="Corrente do COMBO Dominante Supreme"
+              alt="Corrente do COMBO Dominante Supreme™"
               width={600}
               height={600}
               hint="gold chain"
@@ -183,7 +183,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 {!isDiscountClaimed ? (
                     <>
                         <p className="font-headline text-2xl text-primary">VOCÊ FOI SELECIONADO</p>
-                        <p className="text-lg mt-2">Clique no presente abaixo para desbloquear seu acesso VIP ao COMBO Dominante Supreme.</p>
+                        <p className="text-lg mt-2">Clique no presente abaixo para desbloquear seu acesso VIP ao COMBO Dominante Supreme™.</p>
                         <button onClick={handleClaimDiscount} className="mt-6 animate-pulse-glow transition-transform hover:scale-105">
                            <Gift className="text-primary h-24 w-24 md:h-32 md:w-32"/>
                         </button>
@@ -221,7 +221,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="text-center md:text-left">
                         <h2 className="font-headline text-3xl md:text-4xl text-primary">RISCO ZERO. RESPEITO TOTAL.</h2>
-                        <p className="text-lg text-foreground/80 mt-4">Temos tanta confiança no poder do COMBO Dominante Supreme que assumimos todo o risco. Você tem 7 dias de Garantia Incondicional. Se não sentir o impacto no seu visual e na sua confiança, devolvemos 100% do seu dinheiro. Simples assim.</p>
+                        <p className="text-lg text-foreground/80 mt-4">Temos tanta confiança no poder do COMBO Dominante Supreme™ que assumimos todo o risco. Você tem 7 dias de Garantia Incondicional. Se não sentir o impacto no seu visual e na sua confiança, devolvemos 100% do seu dinheiro. Simples assim.</p>
                     </div>
                     <div className="flex flex-col items-center justify-center space-y-4">
                         <ShieldCheck className="h-24 w-24 text-primary" />

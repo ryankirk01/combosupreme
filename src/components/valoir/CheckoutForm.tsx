@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Loader2, Shield, Gem, Sparkles } from 'lucide-react';
+import { ArrowRight, Loader2, Shield, Sparkles } from 'lucide-react';
 import { playPurchaseSound } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 import ProductImage from './ProductImage';
@@ -45,10 +45,7 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
     setIsLoading(true);
     playPurchaseSound();
     
-    // Simula uma pequena espera para o som tocar antes do redirecionamento
     setTimeout(() => {
-      // Aqui você poderia adicionar lógica para passar a opção de frete para o checkout se a plataforma suportar
-      // Por exemplo: `${models[selectedModel].checkoutUrl}?shipping=express`
       window.location.href = models[selectedModel].checkoutUrl;
     }, 300); 
   };

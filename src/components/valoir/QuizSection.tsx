@@ -82,7 +82,7 @@ const HoldButton = ({ onComplete }: { onComplete: (points: number, text: string)
           onMouseUp={handleMouseUp}
           onTouchStart={handleMouseDown}
           onTouchEnd={handleMouseUp}
-          className="relative flex items-center justify-center w-48 h-48 md:w-56 md:h-56 rounded-full bg-card/80 border-4 border-primary/20 transition-all duration-300 transform active:scale-95 focus:outline-none"
+          className="relative flex items-center justify-center w-48 h-48 md:w-56 md:h-56 rounded-full bg-card/80 border-4 border-primary/20 transition-all duration-300 transform active:scale-95 focus:outline-none shine-effect"
         >
           <div className="absolute inset-0 rounded-full border-4 border-primary transition-all duration-500" style={{ transform: `scale(${0.8 + holdLevel * 0.1})`, opacity: isHolding ? 1 : 0 }}></div>
           <div 
@@ -166,7 +166,7 @@ const TapChallenge = ({ onComplete, answers }: { onComplete: (points: number, te
                     <Button
                         onClick={handleTap}
                         onMouseUp={timeLeft === 0 ? endChallenge : undefined}
-                        className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-primary-foreground bg-primary shadow-gold active:scale-95 flex flex-col justify-center items-center text-xl md:text-2xl"
+                        className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-primary-foreground bg-primary shadow-gold active:scale-95 flex flex-col justify-center items-center text-xl md:text-2xl shine-effect"
                     >
                        <span>Toque Rápido!</span>
                        <span className="text-5xl font-bold opacity-80 mt-2">{taps}</span>
