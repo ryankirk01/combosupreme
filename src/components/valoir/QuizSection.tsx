@@ -36,8 +36,7 @@ const quizQuestions = [
     answers: [
       { text: 'Subir de nível', points: 15 },
       { text: 'Ser referência', points: 15 },
-      { text: 'Impor respeito', points: 15 },
-      { text: 'Ter o que ninguém tem', points: 20 },
+      { text: 'Impor respeito', points: 20 },
     ],
     pointsLabel: 'Ambição'
   },
@@ -185,18 +184,16 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
               <CarouselNext className="text-primary hover:text-primary-foreground border-primary hover:bg-primary" />
             </Carousel>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl">
               {currentQuestion.answers.map((answer, index) => (
                 <Button
                   key={index}
                   variant="outline"
-                  className="font-headline text-lg md:text-xl h-20 md:h-24 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-black/20"
+                  className="font-headline text-lg md:text-xl h-24 md:h-32 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-black/20 flex flex-col"
                   onClick={() => handleAnswer(answer.points, answer.text)}
                 >
-                  <div>
-                    <p>{answer.text}</p>
-                    <p className="text-sm text-primary/80">(+{answer.points} {currentQuestion.pointsLabel})</p>
-                  </div>
+                  <span className="text-2xl">{answer.text}</span>
+                  <span className="text-base text-primary/80 mt-1">(+{answer.points} {currentQuestion.pointsLabel})</span>
                 </Button>
               ))}
             </div>
