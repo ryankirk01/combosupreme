@@ -6,7 +6,8 @@ import { Card } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
 import { cn } from '@/lib/utils';
-import { CheckCircle, CreditCard, Gift, ShieldCheck } from 'lucide-react';
+import { CheckCircle, CreditCard, Gift, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
+import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 
 const testimonials = [
   { name: 'Ricardo Alves', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único.', image: 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=200&h=200&auto=format&fit=crop' },
@@ -25,9 +26,36 @@ const purchaseNotifications = [
 
 const FREEPAY_CHECKOUT_URL = 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b';
 
-export default function SalesPage() {
+type SalesPageProps = {
+  quizAnswers: string[];
+}
+
+export default function SalesPage({ quizAnswers }: SalesPageProps) {
   const [isDiscountClaimed, setIsDiscountClaimed] = useState(false);
   const [notification, setNotification] = useState<{ name: string, visible: boolean } | null>(null);
+  const [styleDiagnosis, setStyleDiagnosis] = useState<string | null>(null);
+  const [isDiagnosing, setIsDiagnosing] = useState(true);
+
+  useEffect(() => {
+    async function getDiagnosis() {
+      if (quizAnswers.length > 0) {
+        try {
+          const result = await diagnoseStyle({ answers: quizAnswers });
+          setStyleDiagnosis(result.diagnosis);
+        } catch (error) {
+          console.error("Erro ao obter diagnóstico de estilo:", error);
+          // Fallback em caso de erro da IA
+          setStyleDiagnosis("Seu estilo é único e suas escolhas mostram que você está pronto para um novo nível de presença. O COMBO Dominante Supreme foi feito para pessoas como você.");
+        } finally {
+          setTimeout(() => setIsDiagnosing(false), 1500); // Simula um tempo de análise
+        }
+      } else {
+        setIsDiagnosing(false);
+      }
+    }
+    getDiagnosis();
+  }, [quizAnswers]);
+
 
   const handleClaimDiscount = () => {
     playPurchaseSound();
@@ -55,6 +83,16 @@ export default function SalesPage() {
     return () => clearInterval(intervalId);
   }, []);
 
+  if (isDiagnosing) {
+    return (
+      <div className="flex flex-col items-center justify-center text-center min-h-[60vh] animate-fade-in-up">
+        <Loader2 className="h-16 w-16 text-primary animate-spin mb-6" />
+        <h2 className="font-headline text-3xl text-primary tracking-widest">Analisando seu perfil dominante...</h2>
+        <p className="text-foreground/80 mt-2">Estamos preparando uma oferta exclusiva para você.</p>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full bg-background text-foreground animate-fade-in-up">
       <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-lg border-b border-primary/20">
@@ -75,6 +113,17 @@ export default function SalesPage() {
       )}
 
       <main className="container mx-auto px-4">
+        
+        {styleDiagnosis && (
+          <section className="py-12 text-center">
+            <Card className="bg-card/50 border border-primary/20 p-6 max-w-3xl mx-auto shadow-lg shadow-primary/10">
+              <Sparkles className="h-8 w-8 text-primary mx-auto mb-3" />
+              <h2 className="font-headline text-2xl text-primary tracking-wider mb-2">Seu Diagnóstico de Estilo:</h2>
+              <p className="text-lg text-foreground/90 italic">"{styleDiagnosis}"</p>
+            </Card>
+          </section>
+        )}
+
         <section className="relative text-center py-16 md:py-24 min-h-[80vh] flex flex-col items-center justify-center">
           <div className="absolute inset-0 -z-10">
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>

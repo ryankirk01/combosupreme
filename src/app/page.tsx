@@ -10,6 +10,7 @@ type GameState = 'hero' | 'quiz' | 'sales';
 
 export default function Home() {
   const [gameState, setGameState] = useState<GameState>('hero');
+  const [quizAnswers, setQuizAnswers] = useState<string[]>([]);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,8 @@ export default function Home() {
 
   const startQuiz = () => setGameState('quiz');
   
-  const showSalesPage = () => {
+  const showSalesPage = (answers: string[]) => {
+    setQuizAnswers(answers);
     setGameState('sales');
   };
 
@@ -29,7 +31,7 @@ export default function Home() {
       case 'quiz':
         return <QuizSection onComplete={showSalesPage} />;
       case 'sales':
-        return <SalesPage />;
+        return <SalesPage quizAnswers={quizAnswers} />;
       default:
         return <HeroSection onStart={startQuiz} />;
     }

@@ -43,7 +43,7 @@ const quizQuestions = [
 ];
 
 type QuizSectionProps = {
-  onComplete: () => void;
+  onComplete: (answers: string[]) => void;
 };
 
 export default function QuizSection({ onComplete }: QuizSectionProps) {
@@ -51,11 +51,13 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
   const [score, setScore] = useState(0);
   const [lastPoints, setLastPoints] = useState(0);
   const [showPoints, setShowPoints] = useState(false);
+  const [collectedAnswers, setCollectedAnswers] = useState<string[]>([]);
 
-  const handleAnswer = (points: number) => {
+  const handleAnswer = (points: number, answerText: string) => {
     playPurchaseSound();
     setLastPoints(points);
     setShowPoints(true);
+    setCollectedAnswers(prev => [...prev, answerText]);
     
     setTimeout(() => {
       const newScore = score + points;
@@ -65,7 +67,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
       if (currentQuestionIndex < quizQuestions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        onComplete();
+        onComplete([...collectedAnswers, answerText]);
       }
     }, 800);
   };
@@ -100,7 +102,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
           {currentQuestion.isImageQuestion ? (
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
               {currentQuestion.answers.map((answer, index) => (
-                <button key={index} onClick={() => handleAnswer(answer.points)} className="group text-left relative overflow-hidden rounded-lg border-2 border-primary/20 hover:border-primary hover:scale-105 focus:border-primary focus:outline-none transition-all transform-gpu">
+                <button key={index} onClick={() => handleAnswer(answer.points, answer.text)} className="group text-left relative overflow-hidden rounded-lg border-2 border-primary/20 hover:border-primary hover:scale-105 focus:border-primary focus:outline-none transition-all transform-gpu">
                   <Image src={answer.image!} alt={answer.text} width={200} height={300} className="w-full h-full object-cover transition-transform group-hover:scale-110" data-ai-hint={answer.hint} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   <p className="absolute bottom-0 left-0 p-2 md:p-4 font-headline text-lg md:text-xl text-white [text-shadow:1px_1px_3px_black]">{answer.text}</p>
@@ -114,7 +116,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
                   key={index}
                   variant="outline"
                   className="font-headline text-lg md:text-xl h-20 md:h-24 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-black/20"
-                  onClick={() => handleAnswer(answer.points)}
+                  onClick={() => handleAnswer(answer.points, answer.text)}
                 >
                   <div>
                     <p>{answer.text}</p>
