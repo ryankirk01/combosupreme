@@ -54,7 +54,7 @@ export default function Home() {
   }
 
   return (
-    <main className={cn("relative flex min-h-screen flex-col items-center justify-center p-4 md:p-8 overflow-x-hidden bg-background", "animate-background-aurora")}>
+    <main className={cn("relative flex min-h-screen flex-col items-center justify-center p-4 md:p-8 overflow-x-hidden bg-background select-none", "animate-background-aurora")}>
       <div className="w-full max-w-7xl">
         {renderGameState()}
       </div>
