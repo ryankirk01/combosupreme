@@ -1,12 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
 import { CheckCircle, CreditCard, Gift, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
+import ProductImage from './ProductImage';
 
 const testimonials = [
   { name: 'Ricardo Alves', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único.', image: 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=200&h=200&auto=format&fit=crop' },
@@ -142,9 +142,14 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
 
         <section className="py-16 md:py-20">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <Card className="bg-card/50 border-primary/20 p-2 md:p-4 shine-effect hover:scale-105 transition-transform duration-300">
-              <Image src="https://images.unsplash.com/photo-1721094052303-34e47087f226?q=80&w=600&h=600&auto=format&fit=crop" alt="Relógio do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg w-full" data-ai-hint="luxury watch" />
-            </Card>
+            <ProductImage
+              src="https://placehold.co/600x600.png"
+              alt="Relógio do COMBO Dominante Supreme"
+              width={600}
+              height={600}
+              hint="luxury watch"
+              className="hover:scale-105 transition-transform duration-300"
+            />
             <div className="text-center md:text-left">
               <h3 className="font-headline text-3xl md:text-4xl text-primary">Relógio Dominante™</h3>
               <ul className="mt-4 space-y-3 text-lg text-foreground/80 list-none p-0">
@@ -163,9 +168,14 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 <li className="flex items-center justify-center md:justify-end gap-3"><CheckCircle className="text-primary h-5 w-5 flex-shrink-0"/>Fecho de Gaveta Seguro</li>
               </ul>
             </div>
-            <Card className="bg-card/50 border-primary/20 p-2 md:p-4 shine-effect hover:scale-105 transition-transform duration-300 md:order-1">
-              <Image src="https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=600&h=600&auto=format&fit=crop" alt="Corrente do COMBO Dominante Supreme" width={600} height={600} className="rounded-lg w-full" data-ai-hint="cuban chain" />
-            </Card>
+            <ProductImage
+              src="https://placehold.co/600x600.png"
+              alt="Corrente do COMBO Dominante Supreme"
+              width={600}
+              height={600}
+              hint="cuban chain"
+              className="hover:scale-105 transition-transform duration-300 md:order-1"
+            />
           </div>
         </section>
 
@@ -198,7 +208,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map(item => (
               <Card key={item.name} className="bg-card/50 border-primary/20 p-6 text-center">
-                <Image src={item.image} alt={item.name} width={80} height={80} className="rounded-full mx-auto mb-4 border-2 border-primary" data-ai-hint="man portrait"/>
+                <ProductImage src={item.image} alt={item.name} width={80} height={80} className="rounded-full mx-auto mb-4 border-2 border-primary" hint="man portrait"/>
                 <p className="text-foreground/80 italic">"{item.text}"</p>
                 <h4 className="mt-4 font-bold text-lg text-primary">{item.name}</h4>
               </Card>
