@@ -32,7 +32,7 @@ type SalesPageProps = {
 
 export default function SalesPage({ quizAnswers }: SalesPageProps) {
   const [isDiscountClaimed, setIsDiscountClaimed] = useState(false);
-  const [notification, setNotification] = useState<{ name: string, visible: boolean } | null>(null);
+  const [notification, setNotification] = useState<{ name: string, key: number } | null>(null);
   const [styleDiagnosis, setStyleDiagnosis] = useState<string | null>(null);
   const [isDiagnosing, setIsDiagnosing] = useState(true);
 
@@ -74,11 +74,7 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
   useEffect(() => {
     const showRandomNotification = () => {
       const randomName = purchaseNotifications[Math.floor(Math.random() * purchaseNotifications.length)];
-      setNotification({ name: randomName, visible: true });
-
-      setTimeout(() => {
-        setNotification(prev => prev ? { ...prev, visible: false } : null);
-      }, 5000); 
+      setNotification({ name: randomName, key: Date.now() });
     };
 
     const intervalId = setInterval(showRandomNotification, 12000);
@@ -110,10 +106,10 @@ export default function SalesPage({ quizAnswers }: SalesPageProps) {
       </header>
       
       {notification && (
-        <div className={cn(
-          "fixed bottom-4 left-4 z-50 bg-card border border-primary/30 p-4 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-3",
-          notification.visible ? 'animate-notification-in' : 'animate-notification-out'
-        )}>
+        <div 
+          key={notification.key}
+          className="fixed bottom-0 left-1/2 -translate-x-1/2 z-50 bg-card border border-primary/30 p-4 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-3 animate-notification-float"
+        >
            <CheckCircle className="text-primary h-6 w-6"/>
            <p className="text-sm">{notification.name} comprou agora mesmo o COMBO Dominante Supreme!</p>
         </div>

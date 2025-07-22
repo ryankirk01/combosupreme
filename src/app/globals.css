@@ -155,31 +155,21 @@
   }
 
   @keyframes notification-slide-in {
-    from {
-      transform: translateX(-100%);
+    0% {
+      transform: translateY(100%);
       opacity: 0;
     }
-    to {
-      transform: translateX(0);
+    20%, 80% {
+      transform: translateY(-10%);
       opacity: 1;
     }
-  }
-
-  @keyframes notification-slide-out {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(-100%);
+    100% {
+      transform: translateY(-50%);
       opacity: 0;
     }
   }
 
-  .animate-notification-in {
-    animation: notification-slide-in 0.5s ease-out forwards;
-  }
-  .animate-notification-out {
-    animation: notification-slide-out 0.5s ease-in forwards;
+  .animate-notification-float {
+    animation: notification-slide-in 5s ease-in-out forwards;
   }
 }
