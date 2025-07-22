@@ -169,11 +169,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
               </ul>
             </div>
             <ProductImage
-              src="https://images.unsplash.com/photo-1616843649695-35a2c20a4439"
+              src="https://storage.googleapis.com/gcp-kms-prod-tokens/6379555f-87d3-4a1d-8f2a-e24177209ac7/z0pdp/60fca566-f99a-452f-879a-88698a96c141.png"
               alt="Corrente do COMBO Dominante Supreme"
               width={600}
               height={600}
-              hint="cuban chain"
+              hint="gold chain"
               className="hover:scale-105 transition-transform duration-300 md:order-1"
             />
           </div>

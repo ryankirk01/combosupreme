@@ -166,10 +166,10 @@ const TapChallenge = ({ onComplete, answers }: { onComplete: (points: number, te
                     <Button
                         onClick={handleTap}
                         onMouseUp={timeLeft === 0 ? endChallenge : undefined}
-                        className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-xl md:text-2xl text-primary-foreground bg-primary shadow-gold active:scale-95"
+                        className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-primary-foreground bg-primary shadow-gold active:scale-95 flex flex-col justify-center items-center text-xl md:text-2xl"
                     >
-                       Toque Rápido!
-                       <span className="absolute text-5xl font-bold opacity-80">{taps}</span>
+                       <span>Toque Rápido!</span>
+                       <span className="text-5xl font-bold opacity-80 mt-2">{taps}</span>
                     </Button>
                 </>
             )}
