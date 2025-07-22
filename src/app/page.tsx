@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import HeroSection from '@/components/valoir/HeroSection';
 import QuizSection from '@/components/valoir/QuizSection';
 import SalesPage from '@/components/valoir/SalesPage';
+import { cn } from '@/lib/utils';
 
 type GameState = 'hero' | 'quiz' | 'sales';
 
@@ -42,8 +43,7 @@ export default function Home() {
   }
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center p-4 md:p-8 overflow-x-hidden bg-black">
-      <div className="absolute inset-0 -z-20 h-full w-full bg-background bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),rgba(255,255,255,0))]"></div>
+    <main className={cn("relative flex min-h-screen flex-col items-center justify-center p-4 md:p-8 overflow-x-hidden bg-background", "animate-background-aurora")}>
       <div className="w-full">
         {renderGameState()}
       </div>
