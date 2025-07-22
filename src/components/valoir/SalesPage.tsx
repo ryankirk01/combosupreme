@@ -144,12 +144,12 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="w-full h-auto mb-5">
                 <ProductImage
-                src="https://storage.googleapis.com/gcp-kms-prod-tokens/6379555f-87d3-4a1d-8f2a-e24177209ac7/z0pdp/7995166f-4022-48a6-912a-3507d9f79603.png"
+                src="https://i.imgur.com/cfbV6b0.png"
                 alt="Relógio do COMBO Dominante Supreme"
                 width={600}
                 height={600}
                 hint="luxury watch"
-                className="hover:scale-105 transition-transform duration-300"
+                className="hover:scale-105 transition-transform duration-300 w-full h-auto"
                 />
             </div>
             <div className="text-center md:text-left">
