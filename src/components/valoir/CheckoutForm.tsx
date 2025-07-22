@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { playPurchaseSound } from '@/lib/utils';
 import { Badge } from '../ui/badge';
+import ProductImage from './ProductImage';
 
 
 const FREEPAY_CHECKOUT_URL = 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b';
@@ -30,20 +31,30 @@ export default function CheckoutForm() {
         <CardDescription>Você está a um passo de garantir seu COMBO Dominante Supreme.</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center space-y-6 p-6">
-        <div className="w-full text-center bg-card/50 p-4 rounded-lg border border-border">
+
+        <ProductImage
+            src="https://storage.googleapis.com/gcp-kms-prod-tokens/6379555f-87d3-4a1d-8f2a-e24177209ac7/z0pdp/60fca566-f99a-452f-879a-88698a96c141.png"
+            alt="Combo Dominante Supreme"
+            width={400}
+            height={400}
+            hint="luxury watch gold chain"
+            className="w-48 h-48 mb-4"
+        />
+
+        <div className="w-full text-center bg-card/50 p-4 rounded-lg border border-green-500/50 shadow-[0_0_20px_theme(colors.green.500/0.3)] animate-pulse">
             <p className="text-muted-foreground">Produto</p>
             <p className="font-bold text-lg text-foreground">COMBO Dominante Supreme</p>
             <p className="text-muted-foreground mt-2">Valor Total</p>
             <p className="font-headline text-3xl text-primary">R$ 67,00</p>
         </div>
-        <h2 className="font-headline text-2xl text-center">Forma de Pagamento: PIX</h2>
-        <p className="text-muted-foreground text-center text-sm">Clique no botão abaixo para ir para a página de pagamento seguro e finalizar sua compra.</p>
+        
+        <p className="text-muted-foreground text-center text-sm">Clique no botão abaixo para ir para a página de pagamento seguro e finalizar sua compra via PIX.</p>
         
         <Button
             onClick={handleRedirectToCheckout}
             disabled={isLoading}
             size="lg"
-            className="w-full font-headline text-xl tracking-wider py-7 transition-transform hover:scale-105 active:scale-100 shadow-gold animate-pulse-glow"
+            className="w-full font-headline text-xl tracking-wider py-7 transition-transform hover:scale-105 active:scale-100 shadow-gold"
         >
             {isLoading ? (
                 <>
