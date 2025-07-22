@@ -33,7 +33,7 @@ export default function CheckoutForm() {
       <CardContent className="flex flex-col items-center justify-center space-y-6 p-6">
 
         <ProductImage
-            src="https://storage.googleapis.com/gcp-kms-prod-tokens/6379555f-87d3-4a1d-8f2a-e24177209ac7/z0pdp/60fca566-f99a-452f-879a-88698a96c141.png"
+            src="https://i.imgur.com/VJALsDQ.png"
             alt="Combo Dominante Supreme"
             width={400}
             height={400}
