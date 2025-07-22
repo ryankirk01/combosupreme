@@ -178,7 +178,7 @@ const TapChallenge = ({ onComplete, answers }: { onComplete: (points: number, te
 };
 
 type QuizSectionProps = {
-  onComplete: (answers: string[]) => void;
+  onComplete: (answers: string[], score: number) => void;
 };
 
 export default function QuizSection({ onComplete }: QuizSectionProps) {
@@ -193,16 +193,16 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
     setLastPoints(points);
     setShowPoints(true);
     setCollectedAnswers(prev => [...prev, answerText]);
+    const newScore = score + points;
     
     setTimeout(() => {
-      const newScore = score + points;
       setScore(newScore);
       setShowPoints(false);
 
       if (currentQuestionIndex < quizQuestions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        onComplete([...collectedAnswers, answerText]);
+        onComplete([...collectedAnswers, answerText], newScore);
       }
     }, 800);
   };

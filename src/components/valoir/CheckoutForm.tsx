@@ -3,18 +3,20 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Loader2, Shield } from 'lucide-react';
+import { ArrowRight, Loader2, Shield, Gem, Sparkles } from 'lucide-react';
 import { playPurchaseSound } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 import ProductImage from './ProductImage';
 import { cn } from '@/lib/utils';
+import { Checkbox } from '../ui/checkbox';
+import { Label } from '../ui/label';
 
 type ModelType = 'soberano' | 'executivo';
 
 const models = {
   soberano: {
     name: 'Modelo Soberano',
-    description: 'O elegante prateado para um visual sofisticado e moderno.',
+    description: 'O clássico dourado para máxima imponência e destaque.',
     price: 'R$ 67,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b',
     image: 'https://i.imgur.com/VJALsDQ.png',
@@ -22,7 +24,7 @@ const models = {
   },
   executivo: {
     name: 'Modelo Executivo',
-    description: 'O clássico dourado para máxima imponência e destaque.',
+    description: 'O elegante prateado para um visual sofisticado e moderno.',
     price: 'R$ 67,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/d9e8c7f6-a5b4-4c3d-8e7f-1a2b3c4d5e6f',
     image: 'https://i.imgur.com/PhXHR3F.png',
@@ -30,15 +32,23 @@ const models = {
   },
 };
 
-export default function CheckoutForm() {
+type CheckoutFormProps = {
+  score: number;
+};
+
+export default function CheckoutForm({ score }: CheckoutFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModel, setSelectedModel] = useState<ModelType>('soberano');
+  const [usePointsForShipping, setUsePointsForShipping] = useState(false);
 
   const handleRedirectToCheckout = () => {
     setIsLoading(true);
     playPurchaseSound();
     
+    // Simula uma pequena espera para o som tocar antes do redirecionamento
     setTimeout(() => {
+      // Aqui você poderia adicionar lógica para passar a opção de frete para o checkout se a plataforma suportar
+      // Por exemplo: `${models[selectedModel].checkoutUrl}?shipping=express`
       window.location.href = models[selectedModel].checkoutUrl;
     }, 300); 
   };
@@ -85,7 +95,28 @@ export default function CheckoutForm() {
         ))}
         
       </CardContent>
-      <CardFooter className="flex-col items-center justify-center space-y-4 pt-6">
+
+      <CardContent className="px-6 pb-6">
+        <Card className="bg-card/90 border border-primary/20 p-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className='text-center md:text-left'>
+                    <div className="flex items-center gap-2 justify-center md:justify-start">
+                       <Sparkles className="h-6 w-6 text-primary"/>
+                       <h4 className="font-headline text-xl text-primary">Recompensa Exclusiva</h4>
+                    </div>
+                    <p className="text-muted-foreground mt-1">Use seus <strong className="text-primary font-bold">{score} pontos</strong> do desafio para uma vantagem única.</p>
+                </div>
+                <div className="flex items-center space-x-3 bg-background/50 border border-border p-3 rounded-lg">
+                    <Checkbox id="express-shipping" checked={usePointsForShipping} onCheckedChange={(checked) => setUsePointsForShipping(checked as boolean)} />
+                    <Label htmlFor="express-shipping" className="text-base cursor-pointer">
+                        Quero <span className="font-bold text-primary">Frete Expresso Grátis</span> (1 dia útil)
+                    </Label>
+                </div>
+            </div>
+        </Card>
+      </CardContent>
+
+      <CardFooter className="flex-col items-center justify-center space-y-4 pt-0">
         <p className="text-muted-foreground text-center text-sm">Você será redirecionado para um ambiente de pagamento 100% seguro.</p>
         <Button
             onClick={handleRedirectToCheckout}

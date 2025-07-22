@@ -12,6 +12,7 @@ type GameState = 'hero' | 'quiz' | 'sales' | 'checkout';
 export default function Home() {
   const [gameState, setGameState] = useState<GameState>('hero');
   const [quizAnswers, setQuizAnswers] = useState<string[]>([]);
+  const [quizScore, setQuizScore] = useState(0);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -20,8 +21,9 @@ export default function Home() {
 
   const startQuiz = () => setGameState('quiz');
   
-  const showSalesPage = (answers: string[]) => {
+  const showSalesPage = (answers: string[], score: number) => {
     setQuizAnswers(answers);
+    setQuizScore(score);
     setGameState('sales');
   };
 
@@ -38,7 +40,7 @@ export default function Home() {
       case 'sales':
         return <SalesPage quizAnswers={quizAnswers} onCheckout={showCheckout}/>;
       case 'checkout':
-        return <CheckoutForm />;
+        return <CheckoutForm score={quizScore} />;
       default:
         return <HeroSection onStart={startQuiz} />;
     }
