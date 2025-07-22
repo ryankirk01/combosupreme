@@ -36,25 +36,19 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
 
   useEffect(() => {
     async function getDiagnosis() {
-      // Define a fallback diagnosis that can be used in case of an error or no answers.
       const fallbackDiagnosis = "Seu estilo é único e suas escolhas mostram que você está pronto para um novo nível de presença. O COMBO Dominante Supreme foi feito para pessoas como você.";
 
       if (quizAnswers.length > 0) {
         try {
-          // Attempt to get the AI-powered diagnosis.
           const result = await diagnoseStyle({ answers: quizAnswers });
           setStyleDiagnosis(result.diagnosis);
         } catch (error) {
-          // If the AI call fails for any reason (e.g., 503 error, network issue),
-          // log the error for debugging and use the fallback diagnosis.
           console.error("Erro ao obter diagnóstico de estilo:", error);
           setStyleDiagnosis(fallbackDiagnosis);
         } finally {
-          // Simulate a short analysis time for a better user experience.
           setTimeout(() => setIsDiagnosing(false), 1500);
         }
       } else {
-        // If there are no quiz answers, use the fallback diagnosis immediately.
         setIsDiagnosing(false);
         setStyleDiagnosis(fallbackDiagnosis);
       }
