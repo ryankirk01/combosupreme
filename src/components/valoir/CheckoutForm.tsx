@@ -25,7 +25,7 @@ const models = {
     description: 'O elegante prateado para um visual sofisticado e moderno.',
     price: 'R$ 67,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/d9e8c7f6-a5b4-4c3d-8e7f-1a2b3c4d5e6f',
-    image: 'https://placehold.co/400x400.png',
+    image: 'https://i.imgur.com/PhXHR3F.png',
     hint: 'silver watch chain'
   },
 };
@@ -57,7 +57,7 @@ export default function CheckoutForm() {
               key={key}
               className={cn(
                   "w-full md:w-1/2 flex flex-col justify-between transition-all duration-300 border-2 cursor-pointer",
-                  selectedModel === key ? 'border-primary shadow-lg shadow-primary/30' : 'border-border hover:border-primary/50'
+                  selectedModel === key as ModelType ? 'border-primary shadow-lg shadow-primary/30' : 'border-border hover:border-primary/50'
               )}
               onClick={() => setSelectedModel(key as ModelType)}
           >
@@ -77,8 +77,8 @@ export default function CheckoutForm() {
               <p className="font-headline text-4xl text-primary">{model.price}</p>
             </CardContent>
             <CardFooter>
-              <Button variant={selectedModel === key ? 'default' : 'outline'} className="w-full">
-                {selectedModel === key ? <><Shield className="mr-2 h-4 w-4" /> Selecionado</> : 'Selecionar este Modelo'}
+              <Button variant={selectedModel === key as ModelType ? 'default' : 'outline'} className="w-full">
+                {selectedModel === key as ModelType ? <><Shield className="mr-2 h-4 w-4" /> Selecionado</> : 'Selecionar este Modelo'}
               </Button>
             </CardFooter>
           </Card>
