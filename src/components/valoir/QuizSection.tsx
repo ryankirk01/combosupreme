@@ -82,28 +82,28 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
           </span>
         </div>
       )}
-      <div className={cn(showPoints && 'blur-sm pointer-events-none transition-all duration-300')}>
+      <div className={cn(showPoints && 'blur-sm pointer-events-none transition-all duration-300 bg-black/50')}>
         <CardHeader>
-          <div className="flex justify-between items-center mb-4">
-            <p className="font-headline text-lg text-primary tracking-wider">PERGUNTA {currentQuestionIndex + 1}/{quizQuestions.length}</p>
-            <div className="flex items-center gap-2 text-primary font-bold text-xl bg-card/50 py-1 px-3 rounded-lg border border-primary/20">
+          <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
+            <p className="font-headline text-base md:text-lg text-primary tracking-wider">PERGUNTA {currentQuestionIndex + 1}/{quizQuestions.length}</p>
+            <div className="flex items-center gap-2 text-primary font-bold text-lg md:text-xl bg-card/50 py-1 px-3 rounded-lg border border-primary/20">
               <Gem className="h-5 w-5" />
               <span>{score} {currentQuestion.pointsLabel}</span>
             </div>
           </div>
           <Progress value={progress} className="h-2 shine-effect [&>div]:bg-primary" />
-          <CardTitle className="font-headline text-3xl md:text-4xl text-center mt-6 min-h-[8rem] flex items-center justify-center p-4">
+          <CardTitle className="font-headline text-2xl md:text-4xl text-center mt-6 min-h-[6rem] md:min-h-[8rem] flex items-center justify-center p-2 md:p-4">
             {currentQuestion.question}
           </CardTitle>
         </CardHeader>
         <CardContent>
           {currentQuestion.isImageQuestion ? (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
               {currentQuestion.answers.map((answer, index) => (
                 <button key={index} onClick={() => handleAnswer(answer.points)} className="group text-left relative overflow-hidden rounded-lg border-2 border-primary/20 hover:border-primary hover:scale-105 focus:border-primary focus:outline-none transition-all transform-gpu">
                   <Image src={answer.image!} alt={answer.text} width={200} height={300} className="w-full h-full object-cover transition-transform group-hover:scale-110" data-ai-hint={answer.hint} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  <p className="absolute bottom-0 left-0 p-4 font-headline text-xl text-white [text-shadow:1px_1px_3px_black]">{answer.text}</p>
+                  <p className="absolute bottom-0 left-0 p-2 md:p-4 font-headline text-lg md:text-xl text-white [text-shadow:1px_1px_3px_black]">{answer.text}</p>
                 </button>
               ))}
             </div>
@@ -113,7 +113,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
                 <Button
                   key={index}
                   variant="outline"
-                  className="font-headline text-xl h-24 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-black/20"
+                  className="font-headline text-lg md:text-xl h-20 md:h-24 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-black/20"
                   onClick={() => handleAnswer(answer.points)}
                 >
                   <div>
