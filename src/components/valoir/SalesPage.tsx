@@ -9,7 +9,7 @@ import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
 
 const testimonials = [
-  { name: 'Ricardo Alves', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único.', image: 'https://i.imgur.com/LrEQVOb.jpeg' },
+  { name: 'Ricardo Alves', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único.', image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=200&h=200&auto=format&fit=crop' },
   { name: 'Fernanda Lima', text: 'Chegou muito rápido! A embalagem é linda, perfeita pra presente. Meu namorado amou!', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop' },
   { name: 'Jorge Martins', text: 'O combo mudou meu visual. Todo lugar que eu vou alguém pergunta. Valeu cada centavo.', image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=200&h=200&auto=format&fit=crop' }
 ];
@@ -149,7 +149,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 width={600}
                 height={600}
                 hint="luxury watch"
-                className="hover:scale-105 transition-transform duration-300 w-full h-auto"
+                className="hover:scale-105 transition-transform duration-300 w-full h-auto mb-5"
                 />
             </div>
             <div className="text-center md:text-left">
@@ -171,7 +171,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
               </ul>
             </div>
             <ProductImage
-              src="https://storage.googleapis.com/gcp-kms-prod-tokens/6379555f-87d3-4a1d-8f2a-e24177209ac7/z0pdp/60fca566-f99a-452f-879a-88698a96c141.png"
+              src="https://i.imgur.com/LrEQVOb.jpeg"
               alt="Corrente do COMBO Dominante Supreme"
               width={600}
               height={600}
