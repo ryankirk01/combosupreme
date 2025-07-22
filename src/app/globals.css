@@ -107,4 +107,41 @@
   .animate-pulse-glow {
     animation: pulse-glow 3s infinite ease-in-out;
   }
+
+  .shadow-gold {
+    box-shadow: 0 10px 30px -10px hsl(var(--primary)/0.5);
+  }
+
+  .text-shadow-gold {
+    text-shadow: 0 0 15px hsl(var(--primary)/0.5);
+  }
+
+  @keyframes notification-slide-in {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes notification-slide-out {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  .animate-notification-in {
+    animation: notification-slide-in 0.5s ease-out forwards;
+  }
+  .animate-notification-out {
+    animation: notification-slide-out 0.5s ease-in forwards;
+  }
 }

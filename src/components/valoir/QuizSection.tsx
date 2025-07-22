@@ -43,7 +43,7 @@ const quizQuestions = [
 ];
 
 type QuizSectionProps = {
-  onComplete: (score: number) => void;
+  onComplete: () => void;
 };
 
 export default function QuizSection({ onComplete }: QuizSectionProps) {
@@ -65,7 +65,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
       if (currentQuestionIndex < quizQuestions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        onComplete(newScore);
+        onComplete();
       }
     }, 800);
   };
@@ -76,8 +76,8 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
   return (
     <Card className="relative w-full max-w-4xl bg-card/80 backdrop-blur-sm border border-primary/20 animate-fade-in-up shadow-2xl shadow-primary/10">
        {showPoints && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center animate-fade-in-up">
-          <span className="font-headline text-6xl md:text-8xl text-primary [text-shadow:0_0_25px_hsl(var(--primary)/0.8),0_0_50px_hsl(var(--primary)/0.5)]">
+        <div className="absolute inset-0 z-20 flex items-center justify-center animate-fade-in-up">
+          <span className="font-headline text-6xl md:text-9xl text-primary text-shadow-gold drop-shadow-lg">
             +{lastPoints} {currentQuestion.pointsLabel}!
           </span>
         </div>
