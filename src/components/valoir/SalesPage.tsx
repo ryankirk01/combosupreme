@@ -9,7 +9,7 @@ import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
 
 const testimonials = [
-  { name: 'Ricardo Alves', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único.', image: 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=200&h=200&auto=format&fit=crop' },
+  { name: 'Ricardo Alves', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único.', image: 'https://i.imgur.com/LrEQVOb.jpeg' },
   { name: 'Fernanda Lima', text: 'Chegou muito rápido! A embalagem é linda, perfeita pra presente. Meu namorado amou!', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop' },
   { name: 'Jorge Martins', text: 'O combo mudou meu visual. Todo lugar que eu vou alguém pergunta. Valeu cada centavo.', image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=200&h=200&auto=format&fit=crop' }
 ];
