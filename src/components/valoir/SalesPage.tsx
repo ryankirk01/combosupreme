@@ -7,7 +7,7 @@ import { playPurchaseSound } from '@/lib/utils';
 import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star, MousePointerClick } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
-import ScratchCard from './ScratchCard';
+import ImageForger from './ImageForger';
 
 const testimonials = [
   { name: 'Ricardo A.', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único. A entrega foi rápida e a embalagem impecável.', stars: 5 },
@@ -167,21 +167,14 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         </section>
         
         <section className="py-16 md:py-20 text-center">
-            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">Raspe o Ouro. Revele o Poder.</h2>
-            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">O que você vê no espelho é apenas o começo. Raspe a superfície e descubra a imagem de respeito que espera por você.</p>
+            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Forja do Respeito</h2>
+            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Mantenha pressionado e forje a versão dominante que o mundo precisa ver.</p>
             <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
-                <ScratchCard
-                    foregroundImage="https://i.imgur.com/k2oA5yJ.png" // Gold texture with pattern
-                    backgroundImage="https://i.imgur.com/cfbV6b0.png" // Colorida
+                <ImageForger
+                    backgroundImage="https://i.imgur.com/cfbV6b0.png"
                     backgroundHint="man confident luxury"
-                    width={1280}
-                    height={720}
                 />
             </Card>
-            <div className='flex items-center justify-center gap-4 mt-6 text-primary/80 animate-pulse'>
-                <MousePointerClick className='h-6 w-6' />
-                <p className='font-headline text-xl tracking-wider'>Raspe para revelar sua melhor versão</p>
-            </div>
         </section>
 
         <section className="py-16 md:py-20">
