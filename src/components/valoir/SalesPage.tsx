@@ -183,7 +183,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="w-full h-auto mb-5">
                 <ProductImage
-                src="https://i.imgur.com/keYTYiW.png"
+                src="https://i.imgur.com/cfbV6b0.png"
                 alt="Relógio do COMBO Dominante Supreme™"
                 width={600}
                 height={600}
