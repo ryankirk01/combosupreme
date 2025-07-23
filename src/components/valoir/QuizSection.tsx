@@ -187,6 +187,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
   const [lastPoints, setLastPoints] = useState(0);
   const [showPoints, setShowPoints] = useState(false);
   const [collectedAnswers, setCollectedAnswers] = useState<string[]>([]);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleAnswer = (points: number, answerText: string) => {
     playPurchaseSound();
@@ -198,28 +199,37 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
     setTimeout(() => {
       setScore(newScore);
       setShowPoints(false);
+      setIsTransitioning(true);
 
-      if (currentQuestionIndex < quizQuestions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-      } else {
-        onComplete([...collectedAnswers, answerText], newScore);
-      }
-    }, 800);
+      setTimeout(() => {
+        if (currentQuestionIndex < quizQuestions.length - 1) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+          setIsTransitioning(false);
+        } else {
+          onComplete([...collectedAnswers, answerText], newScore);
+        }
+      }, 300); // Duration of fade-out animation
+    }, 1200); // Duration points are shown
   };
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
   
   return (
-    <Card className="relative w-full max-w-4xl bg-card/80 backdrop-blur-sm border border-primary/20 animate-fade-in-up shadow-2xl shadow-primary/10">
+    <Card className="relative w-full max-w-4xl bg-card/80 backdrop-blur-sm border border-primary/20 animate-fade-in-up shadow-2xl shadow-primary/10 overflow-hidden">
        {showPoints && (
-        <div className="absolute inset-0 z-20 flex items-center justify-center animate-fade-in-up">
-          <span className="font-headline text-6xl md:text-9xl text-primary text-shadow-gold drop-shadow-lg">
-            +{lastPoints} {currentQuestion.pointsLabel}!
-          </span>
-        </div>
+         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center animate-fade-in-up">
+            <Gem className="h-16 w-16 text-primary drop-shadow-lg animate-ping absolute" />
+            <span className="font-headline text-6xl md:text-9xl text-primary text-shadow-gold drop-shadow-lg">
+                +{lastPoints} {currentQuestion.pointsLabel}!
+            </span>
+         </div>
       )}
-      <div className={cn(showPoints && 'blur-sm pointer-events-none transition-all duration-300 bg-black/50')}>
+      <div className={cn(
+          "transition-all duration-300",
+          (showPoints || isTransitioning) && 'opacity-0 blur-sm pointer-events-none',
+           isTransitioning && 'transform -translate-y-4'
+        )}>
         <CardHeader>
           <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
             <p className="font-headline text-base md:text-lg text-primary tracking-wider">PERGUNTA {currentQuestionIndex + 1}/{quizQuestions.length}</p>

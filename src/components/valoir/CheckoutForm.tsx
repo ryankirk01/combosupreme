@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Loader2, Shield, Sparkles } from 'lucide-react';
+import { ArrowRight, Eye, Loader2, Shield, Sparkles, Zap } from 'lucide-react';
 import { playPurchaseSound } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 import ProductImage from './ProductImage';
@@ -20,7 +20,9 @@ const models = {
     price: 'R$ 67,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b',
     image: 'https://i.imgur.com/VJALsDQ.png',
-    hint: 'gold watch chain'
+    hint: 'gold watch chain',
+    benefitIcon: Eye,
+    benefitText: 'Imponência e Destaque'
   },
   executivo: {
     name: 'Modelo Executivo',
@@ -28,7 +30,9 @@ const models = {
     price: 'R$ 67,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/530573f0-3d0d-47d5-81fd-9c5b539d4e82',
     image: 'https://i.imgur.com/PhXHR3F.png',
-    hint: 'silver watch chain'
+    hint: 'silver watch chain',
+    benefitIcon: Zap,
+    benefittext: 'Sofisticação e Modernidade'
   },
 };
 
@@ -68,7 +72,7 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
               )}
               onClick={() => setSelectedModel(key as ModelType)}
           >
-            <CardHeader className="text-center">
+            <CardHeader className="text-center pb-2">
               <CardTitle className="font-headline text-2xl">{model.name}</CardTitle>
               <CardDescription>{model.description}</CardDescription>
             </CardHeader>
@@ -81,6 +85,10 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
                   hint={model.hint}
                   className="w-40 h-40"
               />
+              <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 px-3 py-1 rounded-full border border-border">
+                  <model.benefitIcon className="h-4 w-4 text-primary" />
+                  <span>{model.benefitText || model.benefittext}</span>
+              </div>
               <p className="font-headline text-4xl text-primary">{model.price}</p>
             </CardContent>
             <CardFooter>

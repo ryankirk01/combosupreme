@@ -4,9 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star } from 'lucide-react';
+import { CheckCircle, Gift, Loader2, PlayCircle, ShieldCheck, Sparkles, Star } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
+import Image from 'next/image';
 
 const testimonials = [
   { name: 'Ricardo A.', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único. A entrega foi rápida e a embalagem impecável.', stars: 5 },
@@ -22,6 +23,29 @@ const purchaseNotifications = [
   'Carlos de Brasília, DF',
   'Beatriz de Curitiba, PR',
 ];
+
+const StockCounter = () => {
+    const [stock, setStock] = useState(23);
+  
+    useEffect(() => {
+      const decreaseStock = () => {
+        setStock(prevStock => {
+          const newStock = prevStock - Math.floor(Math.random() * 2) - 1;
+          return newStock > 5 ? newStock : 5; // Never go below 5
+        });
+      };
+  
+      const intervalId = setInterval(decreaseStock, Math.random() * (15000 - 8000) + 8000); // every 8-15 seconds
+  
+      return () => clearInterval(intervalId);
+    }, []);
+  
+    return (
+        <div className="mt-4 bg-destructive/80 text-destructive-foreground border-2 border-destructive-foreground/50 rounded-lg font-headline tracking-wider text-lg p-2 animate-pulse">
+            ÚLTIMAS {stock} UNIDADES COM DESCONTO!
+        </div>
+    );
+};
 
 type SalesPageProps = {
   quizAnswers: string[];
@@ -138,7 +162,28 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           <Button onClick={handleProceedToCheckout} size="lg" className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
             QUERO MEU COMBO COM PIX
           </Button>
+          <StockCounter />
            <p className="text-xs mt-4 text-foreground/60">VAGAS LIMITADAS. Compra 100% segura.</p>
+        </section>
+        
+        <section className="py-16 md:py-20 text-center">
+            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">Veja o Poder em Ação</h2>
+            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Isto não é apenas um produto. É a sua nova realidade. Veja o unboxing e sinta a exclusividade.</p>
+            <Card className="max-w-3xl mx-auto bg-card/80 border border-primary/30 p-2 group cursor-pointer hover:shadow-2xl hover:shadow-primary/30 transition-shadow duration-300">
+                <div className="relative">
+                    <Image
+                        src="https://i.imgur.com/cfbV6b0.png"
+                        alt="Unboxing do COMBO Dominante Supreme"
+                        width={1280}
+                        height={720}
+                        className="rounded-md"
+                        data-ai-hint="luxury watch unboxing"
+                    />
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                        <PlayCircle className="w-20 h-20 text-primary/70 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
+                    </div>
+                </div>
+            </Card>
         </section>
 
         <section className="py-16 md:py-20">
