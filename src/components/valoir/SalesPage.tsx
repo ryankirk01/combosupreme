@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star, MousePointerClick } from 'lucide-react';
+import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
-import ImageForger from './ImageForger';
+import ArtisanWorkshop from './ArtisanWorkshop';
 
 const testimonials = [
   { name: 'Ricardo A.', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único. A entrega foi rápida e a embalagem impecável.', stars: 5 },
@@ -168,11 +168,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         
         <section className="py-16 md:py-20 text-center">
             <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Forja do Respeito</h2>
-            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Mantenha pressionado e forje a versão dominante que o mundo precisa ver.</p>
+            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Assista à criação da sua nova imagem de poder.</p>
             <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
-                <ImageForger
-                    backgroundImage="https://i.imgur.com/cfbV6b0.png"
-                    backgroundHint="man confident luxury"
+                <ArtisanWorkshop
+                    finalImage="https://i.imgur.com/cfbV6b0.png"
+                    finalImageHint="man confident luxury"
                 />
             </Card>
         </section>
