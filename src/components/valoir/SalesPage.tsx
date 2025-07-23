@@ -171,8 +171,8 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Assista à criação da sua nova imagem de poder.</p>
             <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
                 <ArtisanWorkshop
-                    finalImage="https://i.imgur.com/cfbV6b0.png"
-                    finalImageHint="man confident luxury"
+                    finalImage="https://i.imgur.com/keYTYiW.png"
+                    finalImageHint="gold watch chain"
                 />
             </Card>
         </section>
