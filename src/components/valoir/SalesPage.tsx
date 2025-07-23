@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { CheckCircle, Gift, Loader2, PlayCircle, ShieldCheck, Sparkles, Star } from 'lucide-react';
+import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star, MousePointer, MoveHorizontal } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
-import Image from 'next/image';
+import ImageComparisonSlider from './ImageComparisonSlider';
 
 const testimonials = [
   { name: 'Ricardo A.', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único. A entrega foi rápida e a embalagem impecável.', stars: 5 },
@@ -167,23 +167,21 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         </section>
         
         <section className="py-16 md:py-20 text-center">
-            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">Veja o Poder em Ação</h2>
-            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Isto não é apenas um produto. É a sua nova realidade. Veja o unboxing e sinta a exclusividade.</p>
-            <Card className="max-w-3xl mx-auto bg-card/80 border border-primary/30 p-2 group cursor-pointer hover:shadow-2xl hover:shadow-primary/30 transition-shadow duration-300">
-                <div className="relative">
-                    <Image
-                        src="https://i.imgur.com/cfbV6b0.png"
-                        alt="Unboxing do COMBO Dominante Supreme"
-                        width={1280}
-                        height={720}
-                        className="rounded-md"
-                        data-ai-hint="luxury watch unboxing"
-                    />
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                        <PlayCircle className="w-20 h-20 text-primary/70 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
-                    </div>
-                </div>
+            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">Veja a Transformação</h2>
+            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Isto não é apenas um produto. É a sua nova realidade. Arraste e sinta a exclusividade.</p>
+            <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
+                <ImageComparisonSlider
+                    beforeImage="https://i.imgur.com/kEaEHYl.png" // Imagem P&B
+                    afterImage="https://i.imgur.com/cfbV6b0.png" // Imagem Colorida
+                    beforeHint="man ordinary"
+                    afterHint="man confident luxury"
+                />
             </Card>
+            <div className='flex items-center justify-center gap-4 mt-4 text-primary/80 animate-pulse'>
+                <MousePointer className='h-6 w-6' />
+                <p className='font-headline text-xl tracking-wider'>Arraste para revelar seu potencial</p>
+                <MoveHorizontal className='h-6 w-6' />
+            </div>
         </section>
 
         <section className="py-16 md:py-20">
@@ -192,11 +190,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="w-full h-auto mb-5">
                 <ProductImage
-                src="https://i.imgur.com/cfbV6b0.png"
+                src="https://i.imgur.com/VJALsDQ.png"
                 alt="Relógio do COMBO Dominante Supreme™"
                 width={600}
                 height={600}
-                hint="luxury watch"
+                hint="gold watch chain"
                 className="hover:scale-105 transition-transform duration-300 w-full h-auto mb-5"
                 />
             </div>
@@ -215,7 +213,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
               alt="Corrente do COMBO Dominante Supreme™"
               width={600}
               height={600}
-              hint="gold chain"
+              hint="gold chain man"
               className="hover:scale-105 transition-transform duration-300 md:order-1"
             />
           </div>

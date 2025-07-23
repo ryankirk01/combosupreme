@@ -43,6 +43,7 @@
   body {
     @apply bg-background text-foreground;
     -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* WebKit/Chromium */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
   }
@@ -174,5 +175,27 @@
 
   .animate-notification-float {
     animation: notification-slide-in 5s ease-in-out forwards;
+  }
+
+  .comparison-slider .handle {
+    box-shadow: 0 0 15px hsl(var(--primary)/0.8);
+  }
+
+  .comparison-slider .handle:before, .comparison-slider .handle:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background: hsl(var(--primary));
+  }
+
+  .comparison-slider .handle:before {
+      top: 0;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .comparison-slider .handle:after {
+      bottom: 0;
+      clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
   }
 }

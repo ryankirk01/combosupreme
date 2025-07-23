@@ -21,6 +21,7 @@ export default function ProductImage({ src, alt, className, width, height, hint 
         height={height}
         className="object-cover w-full h-full rounded-md"
         data-ai-hint={hint}
+        priority
       />
     </Card>
   );
