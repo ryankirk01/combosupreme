@@ -16,7 +16,7 @@ type ModelType = 'soberano' | 'executivo';
 const models = {
   soberano: {
     name: 'Modelo Soberano',
-    description: 'O clássico dourado para máxima imponência e destaque.',
+    description: 'O elegante prateado para um visual sofisticado e moderno.',
     price: 'R$ 67,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b',
     image: 'https://i.imgur.com/VJALsDQ.png',
@@ -26,7 +26,7 @@ const models = {
   },
   executivo: {
     name: 'Modelo Executivo',
-    description: 'O elegante prateado para um visual sofisticado e moderno.',
+    description: 'O clássico dourado para máxima imponência e destaque.',
     price: 'R$ 67,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/530573f0-3d0d-47d5-81fd-9c5b539d4e82',
     image: 'https://i.imgur.com/PhXHR3F.png',
