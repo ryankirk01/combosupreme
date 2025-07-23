@@ -171,7 +171,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">O que você vê no espelho é apenas o começo. Raspe a superfície e descubra a imagem de respeito que espera por você.</p>
             <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
                 <ScratchCard
-                    foregroundImage="https://i.imgur.com/uG9H3cn.png" // Gold texture
+                    foregroundImage="https://i.imgur.com/k2oA5yJ.png" // Gold texture with pattern
                     backgroundImage="https://i.imgur.com/cfbV6b0.png" // Colorida
                     backgroundHint="man confident luxury"
                     width={1280}
