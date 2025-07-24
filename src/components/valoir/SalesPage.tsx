@@ -170,8 +170,8 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           </div>
           
           <DivineProductReveal 
-              src="https://i.imgur.com/keYTYiW.png"
-              hint="gold watch chain"
+              src="https://i.imgur.com/4ZKDJrX.png"
+              hint="product box"
           />
 
           <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl text-foreground tracking-wider text-shadow-gold mt-8">
