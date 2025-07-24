@@ -170,7 +170,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           </div>
           
           <DivineProductReveal 
-              src="https://i.imgur.com/4ZKDJrX.png"
+              src="https://i.imgur.com/YT3WDfI.png"
               hint="product box"
           />
 
