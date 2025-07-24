@@ -22,9 +22,22 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
           animation: spin 30s linear infinite;
         }
 
+        .rays-container-2 {
+            animation: spin-reverse 20s linear infinite;
+        }
+
+        .rays-container-3 {
+            animation: spin 40s linear infinite;
+        }
+
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
         }
 
         .ray {
@@ -36,6 +49,17 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
           background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.5), transparent);
           transform-origin: 0 0;
         }
+
+        .rays-container-2 .ray {
+            height: 280px; /* Slightly shorter */
+            background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.3), transparent);
+        }
+
+        .rays-container-3 .ray {
+            height: 320px; /* Slightly longer */
+            background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.4), transparent);
+        }
+
 
         .image-container {
             animation: pulse-scale-in 2s ease-out forwards;
@@ -72,6 +96,35 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
           />
         ))}
       </div>
+
+      <div className="rays-container rays-container-2">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div
+            key={i}
+            className="ray"
+            style={{
+              transform: `translateX(-50%) rotate(${i * 30}deg)`,
+              animation: `ray-fade 2.5s ease-in-out infinite`,
+              animationDelay: `${i * 0.2}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="rays-container rays-container-3">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div
+            key={i}
+            className="ray"
+            style={{
+              transform: `translateX(-50%) rotate(${i * 30}deg)`,
+              animation: `ray-fade 1.5s ease-out infinite`,
+              animationDelay: `${i * 0.1}s`
+            }}
+          />
+        ))}
+      </div>
+
       
       <div className="image-container">
         <Card className="relative w-64 h-64 md:w-80 md:h-80 group overflow-hidden bg-card/50 border-primary/20 p-2 shadow-2xl shadow-primary/30">
