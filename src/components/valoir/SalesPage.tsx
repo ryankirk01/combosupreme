@@ -10,7 +10,7 @@ import ProductImage from './ProductImage';
 import ArtisanWorkshop from './ArtisanWorkshop';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
-import RevealingProductImage from './RevealingProductImage';
+import DivineProductReveal from './DivineProductReveal';
 import { Progress } from '../ui/progress';
 
 
@@ -169,7 +169,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
           </div>
           
-          <RevealingProductImage 
+          <DivineProductReveal 
               src="https://i.imgur.com/keYTYiW.png"
               hint="gold watch chain"
           />
