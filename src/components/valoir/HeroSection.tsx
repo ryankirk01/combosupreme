@@ -13,7 +13,7 @@ export default function HeroSection({ onStart }: HeroSectionProps) {
         🧠 A forma como você é visto muda com pequenos detalhes. Esse é o mais importante.
       </p>
 
-      <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider [text-shadow:0_0_15px_hsl(var(--primary)/0.5)]">
+      <h1 className="font-headline text-5xl md:text-7xl text-primary tracking-wider text-shadow-gold">
         ⚔️ DESAFIO DOMINANTE SUPREME
       </h1>
       
@@ -42,7 +42,7 @@ export default function HeroSection({ onStart }: HeroSectionProps) {
       <Button 
         onClick={onStart} 
         size="lg" 
-        className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 transition-all duration-300 hover:scale-105 active:scale-100 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 animate-pulse-glow"
+        className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 transition-all duration-300 hover:scale-105 active:scale-100 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 animate-pulse-glow shine-effect"
       >
         [ SIM, EU ACEITO O DESAFIO ]
       </Button>

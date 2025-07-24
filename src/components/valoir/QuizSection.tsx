@@ -156,7 +156,7 @@ const TapChallenge = ({ onComplete, answers }: { onComplete: (points: number, te
             {!isTapping && taps === 0 ? (
                 <Button
                     onClick={handleTap}
-                    className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-2xl md:text-3xl text-primary-foreground bg-primary shadow-gold animate-pulse-glow"
+                    className="w-48 h-48 md:w-56 md:h-56 rounded-full font-headline text-2xl md:text-3xl text-primary-foreground bg-primary shadow-gold animate-pulse-glow shine-effect"
                 >
                     Atingir o Topo
                 </Button>
@@ -258,7 +258,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
                     <div className="p-1">
                       <Card 
                         onClick={() => handleAnswer(answer.points, answer.text)}
-                        className="bg-card/70 border-2 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all cursor-pointer group text-center p-6 md:p-8"
+                        className="bg-card/70 border-2 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all cursor-pointer group text-center p-6 md:p-8 shine-effect"
                       >
                          <answer.icon className="h-16 w-16 md:h-20 md:w-20 mx-auto text-primary group-hover:scale-110 transition-transform" />
                          <h3 className="font-headline text-2xl md:text-3xl mt-4 text-foreground">{answer.text}</h3>
