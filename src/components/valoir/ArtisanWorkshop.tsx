@@ -42,7 +42,7 @@ export default function ArtisanWorkshop({
 
   if (!startAnimation) {
     return (
-      <div className="relative w-full aspect-video select-none overflow-hidden rounded-md bg-black flex items-center justify-center">
+      <div className="relative w-full aspect-square select-none overflow-hidden rounded-md bg-black flex items-center justify-center">
          <p className="text-foreground/50 font-headline text-xl">Role para iniciar a forja...</p>
       </div>
     );
@@ -130,7 +130,7 @@ export default function ArtisanWorkshop({
   };
 
   return (
-    <div className="relative w-full aspect-video select-none overflow-hidden rounded-md bg-black">
+    <div className="relative w-full aspect-square select-none overflow-hidden rounded-md bg-black">
       <Image
         src={finalImage}
         alt="Revealed content"

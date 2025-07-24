@@ -196,11 +196,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         <section className="py-16 md:py-20 text-center" ref={workshopRef}>
             <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Forja do Respeito</h2>
             <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Assista à criação da sua nova imagem de poder.</p>
-            <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
+            <Card className="max-w-lg mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
                 <ArtisanWorkshop
                     startAnimation={workshopInView}
-                    finalImage="https://i.imgur.com/cfbV6b0.png"
-                    finalImageHint="gold watch"
+                    finalImage="https://i.imgur.com/5jkszP7.png"
+                    finalImageHint="watch chain"
                 />
             </Card>
         </section>
