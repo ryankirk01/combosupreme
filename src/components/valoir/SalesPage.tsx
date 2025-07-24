@@ -4,13 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star, ChevronDown, AlarmClock } from 'lucide-react';
+import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star, ChevronDown, AlarmClock, Flame } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
 import ArtisanWorkshop from './ArtisanWorkshop';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 import RevealingProductImage from './RevealingProductImage';
+import { Progress } from '../ui/progress';
 
 
 const testimonials = [
@@ -29,26 +30,33 @@ const purchaseNotifications = [
 ];
 
 const StockCounter = () => {
-    const [stock, setStock] = useState(23);
-  
-    useEffect(() => {
-      const decreaseStock = () => {
-        setStock(prevStock => {
-          const newStock = prevStock - Math.floor(Math.random() * 2) - 1;
-          return newStock > 5 ? newStock : 5; // Never go below 5
-        });
-      };
-  
-      const intervalId = setInterval(decreaseStock, Math.random() * (15000 - 8000) + 8000); // every 8-15 seconds
-  
-      return () => clearInterval(intervalId);
-    }, []);
-  
-    return (
-        <div className="mt-4 bg-destructive/80 text-destructive-foreground border-2 border-destructive-foreground/50 rounded-lg font-headline tracking-wider text-base md:text-lg p-2 animate-pulse">
-            ÚLTIMAS {stock} UNIDADES COM 77% DE DESCONTO!
+  const [stock, setStock] = useState(23);
+  const totalStock = 30;
+
+  useEffect(() => {
+    const decreaseStock = () => {
+      setStock(prevStock => {
+        const newStock = prevStock - Math.floor(Math.random() * 2) - 1;
+        return newStock > 5 ? newStock : 5; // Never go below 5
+      });
+    };
+
+    const intervalId = setInterval(decreaseStock, Math.random() * (15000 - 8000) + 8000); // every 8-15 seconds
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const stockPercentage = (stock / totalStock) * 100;
+
+  return (
+    <div className="mt-6 w-full max-w-sm p-3 bg-card/80 border border-destructive/30 rounded-lg shadow-lg">
+        <div className="flex justify-between items-center text-sm font-semibold mb-1">
+            <span className='text-destructive-foreground flex items-center gap-1'><Flame className='w-4 h-4 text-destructive' /> Estoque Acabando</span>
+            <span className='text-destructive font-bold'>{stock} restantes</span>
         </div>
-    );
+      <Progress value={stockPercentage} className="h-2 bg-destructive/20 [&>div]:bg-destructive" />
+    </div>
+  );
 };
 
 type SalesPageProps = {
@@ -189,12 +197,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Forja do Respeito</h2>
             <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Assista à criação da sua nova imagem de poder.</p>
             <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
-                {workshopInView && (
-                  <ArtisanWorkshop
-                      finalImage="https://i.imgur.com/cfbV6b0.png"
-                      finalImageHint="gold watch"
-                  />
-                )}
+                <ArtisanWorkshop
+                    startAnimation={workshopInView}
+                    finalImage="https://i.imgur.com/cfbV6b0.png"
+                    finalImageHint="gold watch"
+                />
             </Card>
         </section>
 
@@ -208,7 +215,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 alt="Relógio do COMBO Dominante Supreme™"
                 width={600}
                 height={600}
-                hint="gold watch chain"
+                hint="gold watch"
                 className="hover:scale-105 transition-transform duration-300 w-full h-auto mb-5"
                 />
             </div>
@@ -252,7 +259,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                        <p className="text-muted-foreground mt-2 text-sm">(Esta oferta é pessoal, intransferível e válida apenas agora)</p>
                        <Button onClick={handleProceedToCheckout} size="lg" className={cn(
                           "mt-8 font-headline tracking-widest animate-pulse-glow shadow-gold",
-                          "text-lg px-8 py-6 md:text-xl md:px-10 md:py-7"
+                          "text-lg px-6 py-5 md:text-xl md:px-10 md:py-7"
                        )}>
                            GARANTIR MEU DESCONTO E PODER
                        </Button>
