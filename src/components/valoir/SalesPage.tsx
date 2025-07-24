@@ -134,7 +134,47 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
   }
 
   return (
-    <div className="w-full bg-background text-foreground animate-fade-in-up">
+    <div className={cn("w-full bg-background text-foreground animate-fade-in-up", "animate-background-aurora")}>
+        <style jsx>{`
+            .rays-container {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 1px;
+              height: 1px;
+              animation: spin 30s linear infinite;
+              transform: translate(-50%, -50%);
+            }
+
+            .rays-container-2 {
+              animation: spin-reverse 40s linear infinite;
+            }
+
+            @keyframes spin {
+              from { transform: translate(-50%, -50%) rotate(0deg); }
+              to { transform: translate(-50%, -50%) rotate(360deg); }
+            }
+
+            @keyframes spin-reverse {
+                from { transform: translate(-50%, -50%) rotate(360deg); }
+                to { transform: translate(-50%, -50%) rotate(0deg); }
+            }
+
+            .ray {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 2px;
+              height: 500px; /* Increased height for bigger effect */
+              background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.2), transparent);
+              transform-origin: 0 0;
+            }
+            
+            .rays-container-2 .ray {
+              height: 550px; /* Increased height for bigger effect */
+              background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.15), transparent);
+            }
+        `}</style>
       <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-lg border-b border-primary/20">
         <div className="container mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center p-4 text-center">
           <h1 className="font-headline text-xl md:text-3xl text-primary tracking-widest">COMBO Dominante Supreme™</h1>
@@ -165,11 +205,22 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         )}
 
         <section className="relative text-center pt-16 md:pt-20 pb-12 flex flex-col items-center justify-center">
-          <div className="absolute inset-0 -z-10">
-             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+          <div className="relative flex justify-center items-center w-full max-w-2xl mx-auto">
+            <div className="absolute inset-0 z-0 opacity-70 blur-sm">
+                <div className="rays-container">
+                    {Array.from({ length: 12 }).map((_, i) => (
+                    <div key={`r1-${i}`} className="ray" style={{ transform: `rotate(${i * 30}deg)` }} />
+                    ))}
+                </div>
+                <div className="rays-container rays-container-2">
+                    {Array.from({ length: 12 }).map((_, i) => (
+                    <div key={`r2-${i}`} className="ray" style={{ transform: `rotate(${i * 30 + 15}deg)` }} />
+                    ))}
+                </div>
+            </div>
+            <VideoPlayer src="https://i.imgur.com/s3q6b3e.mp4" className="z-10" />
           </div>
-          
-          <VideoPlayer src="https://i.imgur.com/s3q6b3e.mp4" />
+
 
           <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl text-foreground tracking-wider text-shadow-gold mt-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             Sua Imagem de Poder, Forjada em Aço e Ouro.
