@@ -7,6 +7,7 @@ import { Sparkles, Watch, Link2, Gem } from 'lucide-react';
 type ArtisanWorkshopProps = {
   finalImage: string;
   finalImageHint?: string;
+  startAnimation: boolean;
 };
 
 const stages = [
@@ -19,10 +20,13 @@ const stages = [
 export default function ArtisanWorkshop({
   finalImage,
   finalImageHint,
+  startAnimation
 }: ArtisanWorkshopProps) {
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
 
   useEffect(() => {
+    if (!startAnimation) return;
+
     const interval = setInterval(() => {
       setCurrentStageIndex(prevIndex => {
         if (prevIndex < stages.length - 1) {
@@ -34,7 +38,15 @@ export default function ArtisanWorkshop({
     }, stages[currentStageIndex].duration);
 
     return () => clearInterval(interval);
-  }, [currentStageIndex]);
+  }, [currentStageIndex, startAnimation]);
+
+  if (!startAnimation) {
+    return (
+      <div className="relative w-full aspect-video select-none overflow-hidden rounded-md bg-black flex items-center justify-center">
+         <p className="text-foreground/50 font-headline text-xl">Role para iniciar a forja...</p>
+      </div>
+    );
+  }
 
   const currentStage = stages[currentStageIndex];
 

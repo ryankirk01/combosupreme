@@ -1,13 +1,17 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import { playPurchaseSound } from '@/lib/utils';
-import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star } from 'lucide-react';
+import { CheckCircle, Gift, Loader2, ShieldCheck, Sparkles, Star, ChevronDown, AlarmClock } from 'lucide-react';
 import { diagnoseStyle } from '@/ai/flows/diagnose-style-flow';
 import ProductImage from './ProductImage';
 import ArtisanWorkshop from './ArtisanWorkshop';
+import { useInView } from 'react-intersection-observer';
+import { cn } from '@/lib/utils';
+import RevealingProductImage from './RevealingProductImage';
+
 
 const testimonials = [
   { name: 'Ricardo A.', text: 'Qualidade impressionante, superou minhas expectativas. O relógio é robusto e a corrente tem um brilho único. A entrega foi rápida e a embalagem impecável.', stars: 5 },
@@ -41,7 +45,7 @@ const StockCounter = () => {
     }, []);
   
     return (
-        <div className="mt-4 bg-destructive/80 text-destructive-foreground border-2 border-destructive-foreground/50 rounded-lg font-headline tracking-wider text-lg p-2 animate-pulse">
+        <div className="mt-4 bg-destructive/80 text-destructive-foreground border-2 border-destructive-foreground/50 rounded-lg font-headline tracking-wider text-base md:text-lg p-2 animate-pulse">
             ÚLTIMAS {stock} UNIDADES COM 77% DE DESCONTO!
         </div>
     );
@@ -57,6 +61,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
   const [notification, setNotification] = useState<{ name: string, key: number } | null>(null);
   const [styleDiagnosis, setStyleDiagnosis] = useState<string | null>(null);
   const [isDiagnosing, setIsDiagnosing] = useState(true);
+
+  const { ref: workshopRef, inView: workshopInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
 
   useEffect(() => {
     async function getDiagnosis() {
@@ -147,33 +156,45 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           </section>
         )}
 
-        <section className="relative text-center py-16 md:py-24 min-h-[80vh] flex flex-col items-center justify-center">
+        <section className="relative text-center py-16 md:py-20 min-h-[90vh] flex flex-col items-center justify-center">
           <div className="absolute inset-0 -z-10">
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
           </div>
-          <h2 className="font-headline text-4xl md:text-7xl text-foreground tracking-wider text-shadow-gold">
+          
+          <RevealingProductImage 
+              src="https://i.imgur.com/keYTYiW.png"
+              hint="gold watch chain"
+          />
+
+          <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl text-foreground tracking-wider text-shadow-gold mt-8">
             Sua Imagem de Poder, Forjada em Aço e Ouro.
           </h2>
-          <p className="font-body text-lg md:text-2xl mt-4 text-foreground/80 max-w-2xl">De <span className="line-through">R$299</span> por apenas <span className="text-primary font-bold">R$67</span>. Pague com PIX e receba o respeito que você merece.</p>
+          <p className="font-body text-lg md:text-xl lg:text-2xl mt-4 text-foreground/80 max-w-2xl">De <span className="line-through">R$299</span> por apenas <span className="text-primary font-bold">R$67</span>. Pague com PIX e receba o respeito que você merece.</p>
           <div className="my-8 bg-card/50 border border-primary/20 rounded-lg p-4 flex flex-col items-center gap-2">
             <p className="text-sm text-primary/80">OFERTA EXCLUSIVA TERMINA EM:</p>
             <CountdownTimer initialMinutes={15} className="font-mono text-3xl md:text-4xl text-primary font-bold" />
           </div>
-          <Button onClick={handleProceedToCheckout} size="lg" className="font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
-            FORJAR MINHA IMAGEM DE PODER AGORA
+          <Button onClick={handleProceedToCheckout} size="lg" className="w-full max-w-md md:max-w-lg font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
+            FORJAR MINHA IMAGEM DE PODER
           </Button>
           <StockCounter />
            <p className="text-xs mt-4 text-foreground/60">Compra 100% segura. Vagas limitadas para essa condição.</p>
+           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-foreground/60">
+              <span className="text-xs">Role para ver mais</span>
+              <ChevronDown className="h-5 w-5 animate-bounce" />
+           </div>
         </section>
         
-        <section className="py-16 md:py-20 text-center">
+        <section className="py-16 md:py-20 text-center" ref={workshopRef}>
             <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Forja do Respeito</h2>
             <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Assista à criação da sua nova imagem de poder.</p>
             <Card className="max-w-4xl mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
-                <ArtisanWorkshop
-                    finalImage="https://i.imgur.com/keYTYiW.png"
-                    finalImageHint="gold watch chain"
-                />
+                {workshopInView && (
+                  <ArtisanWorkshop
+                      finalImage="https://i.imgur.com/cfbV6b0.png"
+                      finalImageHint="gold watch"
+                  />
+                )}
             </Card>
         </section>
 
@@ -229,7 +250,10 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                        <h3 className="font-headline text-2xl md:text-3xl text-primary">PARABÉNS! ACESSO LIBERADO.</h3>
                        <p className="text-lg md:text-xl mt-2">Você desbloqueou <span className="font-bold text-primary">77% DE DESCONTO</span>. Seu preço final é <span className="font-bold text-primary">R$67</span>.</p>
                        <p className="text-muted-foreground mt-2 text-sm">(Esta oferta é pessoal, intransferível e válida apenas agora)</p>
-                       <Button onClick={handleProceedToCheckout} size="lg" className="mt-8 font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
+                       <Button onClick={handleProceedToCheckout} size="lg" className={cn(
+                          "mt-8 font-headline tracking-widest animate-pulse-glow shadow-gold",
+                          "text-lg px-8 py-6 md:text-xl md:px-10 md:py-7"
+                       )}>
                            GARANTIR MEU DESCONTO E PODER
                        </Button>
                     </div>
@@ -268,6 +292,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         </section>
 
         <section className="text-center py-16 md:py-20">
+            <div className="flex items-center justify-center gap-4 mb-4 text-destructive animate-pulse">
+              <AlarmClock className="h-10 w-10"/>
+              <CountdownTimer initialMinutes={5} className="font-mono text-3xl md:text-4xl font-bold tracking-widest" />
+              <AlarmClock className="h-10 w-10"/>
+            </div>
             <h2 className="font-headline text-4xl md:text-5xl text-foreground">Sua Última Chance de Dominar.</h2>
             <p className="text-lg md:text-xl text-foreground/80 mt-2 max-w-2xl mx-auto">O tempo está se esgotando. Após esta página, o preço retorna para R$299. A decisão que define sua imagem é agora.</p>
             <Card className="max-w-xl mx-auto mt-8 p-6 md:p-8 bg-card/50 border-primary/20 shadow-lg shadow-primary/20">
