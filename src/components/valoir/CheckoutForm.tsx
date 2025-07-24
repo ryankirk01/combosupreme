@@ -55,7 +55,7 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto animate-fade-in-up bg-card/80 backdrop-blur-sm border border-primary/20 animate-pulse-glow">
+    <Card className="w-full max-w-4xl mx-auto animate-fade-in-up bg-card/80 backdrop-blur-sm border border-primary/20">
       <CardHeader className="text-center">
         <Badge variant="outline" className="text-primary border-primary w-fit mx-auto mb-2">ÚLTIMA ETAPA</Badge>
         <CardTitle className="font-headline text-4xl text-primary">Escolha seu Estilo de Poder</CardTitle>
