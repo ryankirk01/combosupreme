@@ -23,11 +23,15 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
         }
 
         .rays-container-2 {
-            animation: spin-reverse 20s linear infinite;
+          animation: spin-reverse 40s linear infinite;
         }
 
         .rays-container-3 {
-            animation: spin 40s linear infinite;
+          animation: spin 50s linear infinite;
+        }
+
+        .rays-container-4 {
+          animation: spin-reverse 20s linear infinite;
         }
 
         @keyframes spin {
@@ -49,17 +53,21 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
           background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.5), transparent);
           transform-origin: 0 0;
         }
-
+        
         .rays-container-2 .ray {
-            height: 280px; /* Slightly shorter */
-            background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.3), transparent);
+          height: 280px;
+          background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.3), transparent);
         }
 
         .rays-container-3 .ray {
-            height: 320px; /* Slightly longer */
-            background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.4), transparent);
+          height: 320px;
+          background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.4), transparent);
         }
-
+        
+        .rays-container-4 .ray {
+          height: 260px;
+          background: linear-gradient(to top, transparent, hsl(var(--primary) / 0.2), transparent);
+        }
 
         .image-container {
             animation: pulse-scale-in 2s ease-out forwards;
@@ -86,12 +94,10 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
       <div className="rays-container">
         {Array.from({ length: 12 }).map((_, i) => (
           <div
-            key={i}
+            key={`r1-${i}`}
             className="ray"
             style={{
               transform: `translateX(-50%) rotate(${i * 30}deg)`,
-              animation: `ray-fade 2s ease-out infinite`,
-              animationDelay: `${i * 0.15}s`
             }}
           />
         ))}
@@ -100,12 +106,10 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
       <div className="rays-container rays-container-2">
         {Array.from({ length: 12 }).map((_, i) => (
           <div
-            key={i}
+            key={`r2-${i}`}
             className="ray"
             style={{
               transform: `translateX(-50%) rotate(${i * 30}deg)`,
-              animation: `ray-fade 2.5s ease-in-out infinite`,
-              animationDelay: `${i * 0.2}s`
             }}
           />
         ))}
@@ -114,12 +118,22 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
       <div className="rays-container rays-container-3">
         {Array.from({ length: 12 }).map((_, i) => (
           <div
-            key={i}
+            key={`r3-${i}`}
             className="ray"
             style={{
               transform: `translateX(-50%) rotate(${i * 30}deg)`,
-              animation: `ray-fade 1.5s ease-out infinite`,
-              animationDelay: `${i * 0.1}s`
+            }}
+          />
+        ))}
+      </div>
+
+       <div className="rays-container rays-container-4">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div
+            key={`r4-${i}`}
+            className="ray"
+            style={{
+              transform: `translateX(-50%) rotate(${i * 30}deg)`,
             }}
           />
         ))}
@@ -140,13 +154,6 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
              <div className="absolute inset-0 bg-gradient-radial from-transparent to-black/50 opacity-30 group-hover:opacity-10 transition-opacity"></div>
         </Card>
       </div>
-
-       <style jsx>{`
-        @keyframes ray-fade {
-            0%, 100% { opacity: 0; transform: scaleY(0.5); }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
-      `}</style>
 
     </div>
   );
