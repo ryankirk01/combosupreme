@@ -269,8 +269,8 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="text-primary hover:text-primary-foreground border-primary hover:bg-primary" />
-              <CarouselNext className="text-primary hover:text-primary-foreground border-primary hover:bg-primary" />
+              <CarouselPrevious className="text-primary hover:text-primary-foreground border-primary hover:bg-primary -left-4" />
+              <CarouselNext className="text-primary hover:text-primary-foreground border-primary hover:bg-primary -right-4" />
             </Carousel>
           ) : currentQuestion.isTapQuestion ? (
             <TapChallenge onComplete={handleAnswer} answers={currentQuestion.answers} />
