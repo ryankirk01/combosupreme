@@ -164,7 +164,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           </section>
         )}
 
-        <section className="relative text-center py-16 md:py-20 min-h-[90vh] flex flex-col items-center justify-center">
+        <section className="relative text-center pt-16 md:pt-20 pb-12 flex flex-col items-center justify-center">
           <div className="absolute inset-0 -z-10">
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
           </div>
@@ -189,9 +189,11 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             <StockCounter />
           </div>
            <p className="text-xs mt-4 text-foreground/60 animate-fade-in-up" style={{animationDelay: '1.2s'}}>Compra 100% segura. Vagas limitadas para essa condição.</p>
-           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-foreground/60 animate-fade-in-up" style={{animationDelay: '1.4s'}}>
-              <span className="text-xs">Role para ver mais</span>
-              <ChevronDown className="h-5 w-5 animate-bounce" />
+           <div className="w-full flex justify-center mt-8 animate-fade-in-up" style={{animationDelay: '1.4s'}}>
+              <div className="flex flex-col items-center gap-1 text-foreground/60">
+                <span className="text-xs">Role para ver mais</span>
+                <ChevronDown className="h-5 w-5 animate-bounce" />
+              </div>
            </div>
         </section>
         
