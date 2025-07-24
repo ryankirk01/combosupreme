@@ -38,27 +38,32 @@ const NotificationPopup = () => {
       const randomName = purchaseNotifications[Math.floor(Math.random() * purchaseNotifications.length)];
       const text = `${randomName} acabou de desbloquear o Combo Supreme.`;
       setNotification({ text, key: Date.now() });
-
-      setTimeout(() => {
-        setNotification(null);
-      }, 5000); 
     };
 
-    const intervalId = setInterval(showRandomNotification, Math.random() * (12000 - 8000) + 8000);
     const initialTimeout = setTimeout(showRandomNotification, 5000);
+    const intervalId = setInterval(showRandomNotification, Math.random() * (12000 - 8000) + 8000);
 
     return () => {
-      clearInterval(intervalId);
       clearTimeout(initialTimeout);
+      clearInterval(intervalId);
     };
   }, []);
+
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => {
+        setNotification(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
 
   if (!notification) return null;
 
   return (
     <div
       key={notification.key}
-      className="fixed bottom-4 left-4 z-50 bg-card border border-primary/30 p-3 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-3 animate-fade-in-up"
+      className="fixed bottom-4 left-4 z-50 bg-card border border-primary/30 p-3 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-3 animate-notification-float"
     >
       <CheckCircle className="text-primary h-5 w-5" />
       <p className="text-sm text-foreground/80">{notification.text}</p>

@@ -14,16 +14,16 @@ export function playPurchaseSound() {
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
 
-    // Configuração do som (simula um "ca-ching")
+    // Configuração do som (simula um "ca-ching" sutil)
     gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-    gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
+    gainNode.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.01); // Volume reduzido
 
     oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
-    oscillator.frequency.exponentialRampToValueAtTime(1046.50, audioContext.currentTime + 0.1); // C6
+    oscillator.frequency.setValueAtTime(880, audioContext.currentTime); // A5
+    oscillator.frequency.exponentialRampToValueAtTime(1400, audioContext.currentTime + 0.08); // F6
 
     oscillator.start(audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + 0.15);
-    oscillator.stop(audioContext.currentTime + 0.15);
+    gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + 0.1);
+    oscillator.stop(audioContext.currentTime + 0.1);
   }
 }

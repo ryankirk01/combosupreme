@@ -21,8 +21,8 @@ const models = {
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b',
     image: 'https://i.imgur.com/VJALsDQ.png',
     hint: 'gold watch chain',
-    benefitIcon: Eye,
-    benefitText: 'Imponência e Destaque'
+    benefitIcon: Zap,
+    benefitText: 'Sofisticação e Modernidade'
   },
   executivo: {
     name: 'Modelo Executivo',
@@ -31,8 +31,8 @@ const models = {
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/530573f0-3d0d-47d5-81fd-9c5b539d4e82',
     image: 'https://i.imgur.com/PhXHR3F.png',
     hint: 'silver watch chain',
-    benefitIcon: Zap,
-    benefitText: 'Sofisticação e Modernidade'
+    benefitIcon: Eye,
+    benefitText: 'Imponência e Destaque'
   },
 };
 
@@ -42,7 +42,7 @@ type CheckoutFormProps = {
 
 export default function CheckoutForm({ score }: CheckoutFormProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedModel, setSelectedModel] = useState<ModelType>('soberano');
+  const [selectedModel, setSelectedModel] = useState<ModelType>('executivo');
   const [usePointsForShipping, setUsePointsForShipping] = useState(false);
 
   const handleRedirectToCheckout = () => {
@@ -58,8 +58,8 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
     <Card className="w-full max-w-4xl mx-auto animate-fade-in-up bg-card/80 backdrop-blur-sm border border-primary/20">
       <CardHeader className="text-center">
         <Badge variant="outline" className="text-primary border-primary w-fit mx-auto mb-2">ÚLTIMA ETAPA</Badge>
-        <CardTitle className="font-headline text-4xl text-primary">Escolha seu Estilo</CardTitle>
-        <CardDescription>Ambos pelo mesmo valor promocional. O poder está na sua decisão.</CardDescription>
+        <CardTitle className="font-headline text-4xl text-primary">Escolha seu Estilo de Poder</CardTitle>
+        <CardDescription>Ambos pelo mesmo valor promocional de R$47. A decisão final é sua.</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center space-y-6 md:space-y-0 md:flex-row md:space-x-6 md:items-stretch p-6">
         

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Gem, Ship, Briefcase, Crown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { playPurchaseSound } from '@/lib/utils';
@@ -22,7 +22,8 @@ const quizQuestions = [
     pointsLabel: 'Presença'
   },
   {
-    question: 'Qual seu estilo ideal de presença?',
+    question: 'Qual seu arquétipo de poder?',
+    description: 'Escolha o que mais representa você para ganhar pontos de Estilo.',
     isCarouselQuestion: true,
     answers: [
       { text: 'O Navegador', points: 15, icon: Ship, description: 'Desbrava novos mares, confiante e imponente. Seu estilo é sobre liberdade e conquista.' },
@@ -242,6 +243,9 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
           <CardTitle className="font-headline text-2xl md:text-4xl text-center mt-6 min-h-[6rem] md:min-h-[4rem] flex items-center justify-center p-2 md:p-4">
             {currentQuestion.question}
           </CardTitle>
+          {currentQuestion.description && (
+             <CardDescription className="text-center text-base -mt-4">{currentQuestion.description}</CardDescription>
+          )}
         </CardHeader>
         <CardContent className="min-h-[300px] flex items-center justify-center">
           {currentQuestion.isHoldingQuestion ? (
