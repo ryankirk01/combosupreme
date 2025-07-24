@@ -55,7 +55,7 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto animate-fade-in-up bg-card/80 backdrop-blur-sm border border-primary/20">
+    <Card className="w-full max-w-4xl mx-auto animate-fade-in-up bg-card/80 backdrop-blur-sm border border-primary/20 animate-pulse-glow">
       <CardHeader className="text-center">
         <Badge variant="outline" className="text-primary border-primary w-fit mx-auto mb-2">ÚLTIMA ETAPA</Badge>
         <CardTitle className="font-headline text-4xl text-primary">Escolha seu Estilo de Poder</CardTitle>
@@ -67,7 +67,7 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
           <Card 
               key={key}
               className={cn(
-                  "w-full md:w-1/2 flex flex-col justify-between transition-all duration-300 border-2 cursor-pointer",
+                  "w-full md:w-1/2 flex flex-col justify-between transition-all duration-300 border-2 cursor-pointer shine-effect",
                   selectedModel === key as ModelType ? 'border-primary shadow-lg shadow-primary/30' : 'border-border hover:border-primary/50'
               )}
               onClick={() => setSelectedModel(key as ModelType)}
