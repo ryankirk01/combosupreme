@@ -149,7 +149,6 @@ const DivineProductReveal: React.FC<DivineProductRevealProps> = ({ src, hint }) 
                 height={320}
                 className="object-cover w-full h-full rounded-md"
                 data-ai-hint={hint}
-                priority
             />
              <div className="absolute inset-0 bg-gradient-radial from-transparent to-black/50 opacity-30 group-hover:opacity-10 transition-opacity"></div>
         </Card>

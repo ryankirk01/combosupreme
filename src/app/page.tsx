@@ -1,12 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import HeroSection from '@/components/valoir/HeroSection';
-import QuizSection from '@/components/valoir/QuizSection';
-import SalesPage from '@/components/valoir/SalesPage';
+import { useState, useEffect, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
-import CheckoutForm from '@/components/valoir/CheckoutForm';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Loader2 } from 'lucide-react';
+
+const HeroSection = dynamic(() => import('@/components/valoir/HeroSection'), {
+  loading: () => <div className="flex h-screen w-full items-center justify-center bg-background"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>,
+});
+const QuizSection = dynamic(() => import('@/components/valoir/QuizSection'), {
+  loading: () => <div className="flex h-screen w-full items-center justify-center bg-background"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>,
+});
+const SalesPage = dynamic(() => import('@/components/valoir/SalesPage'), {
+  loading: () => <div className="flex h-screen w-full items-center justify-center bg-background"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>,
+});
+const CheckoutForm = dynamic(() => import('@/components/valoir/CheckoutForm'), {
+  loading: () => <div className="flex h-screen w-full items-center justify-center bg-background"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>,
+});
+
 
 type GameState = 'hero' | 'quiz' | 'sales' | 'checkout';
 
@@ -96,6 +107,7 @@ export default function Home() {
   if (!isClient) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-background">
+         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -103,7 +115,9 @@ export default function Home() {
   return (
     <main className={cn("relative flex min-h-screen flex-col items-center justify-center p-4 md:p-8 overflow-x-hidden bg-background", "animate-background-aurora", "select-none")}>
       <div className="w-full max-w-7xl">
-        {renderGameState()}
+        <Suspense fallback={<div className="flex h-screen w-full items-center justify-center bg-background"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>}>
+          {renderGameState()}
+        </Suspense>
       </div>
       {gameState === 'hero' && isClient && <NotificationPopup />}
     </main>

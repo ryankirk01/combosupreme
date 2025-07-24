@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Bebas_Neue, PT_Sans } from 'next/font/google'
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -8,18 +9,27 @@ export const metadata: Metadata = {
   description: "CONQUISTE O STATUS SUPREMO",
 };
 
+const bebas_neue = Bebas_Neue({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-bebas-neue',
+  weight: '400'
+})
+
+const pt_sans = PT_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-pt-sans',
+  weight: ['400', '700']
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={cn("dark", bebas_neue.variable, pt_sans.variable)}>
       <body className={cn("font-body antialiased")}>
         {children}
         <Toaster />
