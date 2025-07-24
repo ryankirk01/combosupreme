@@ -156,7 +156,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         
         {styleDiagnosis && (
           <section className="py-12 text-center">
-            <Card className="bg-card/50 border border-primary/20 p-6 max-w-3xl mx-auto shadow-lg shadow-primary/10">
+            <Card className="bg-card/50 border border-primary/20 p-6 max-w-3xl mx-auto shadow-lg shadow-primary/10 animate-fade-in-up">
               <Sparkles className="h-8 w-8 text-primary mx-auto mb-3" />
               <h2 className="font-headline text-2xl text-primary tracking-wider mb-2">Seu Diagnóstico de Estilo:</h2>
               <p className="text-lg text-foreground/90 italic">"{styleDiagnosis}"</p>
@@ -174,29 +174,31 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
               hint="product box"
           />
 
-          <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl text-foreground tracking-wider text-shadow-gold mt-8">
+          <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl text-foreground tracking-wider text-shadow-gold mt-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             Sua Imagem de Poder, Forjada em Aço e Ouro.
           </h2>
-          <p className="font-body text-lg md:text-xl lg:text-2xl mt-4 text-foreground/80 max-w-2xl">De <span className="line-through">R$299</span> por apenas <span className="text-primary font-bold">R$47</span>. Pague com PIX e receba o respeito que você merece.</p>
-          <div className="my-8 bg-card/50 border border-primary/20 rounded-lg p-4 flex flex-col items-center gap-2">
+          <p className="font-body text-lg md:text-xl lg:text-2xl mt-4 text-foreground/80 max-w-2xl animate-fade-in-up" style={{animationDelay: '0.4s'}}>De <span className="line-through">R$299</span> por apenas <span className="text-primary font-bold">R$47</span>. Pague com PIX e receba o respeito que você merece.</p>
+          <div className="my-8 bg-card/50 border border-primary/20 rounded-lg p-4 flex flex-col items-center gap-2 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
             <p className="text-sm text-primary/80">OFERTA EXCLUSIVA TERMINA EM:</p>
             <CountdownTimer initialMinutes={15} className="font-mono text-3xl md:text-4xl text-primary font-bold" />
           </div>
-          <Button onClick={handleProceedToCheckout} size="lg" className="w-full max-w-md md:max-w-lg font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
+          <Button onClick={handleProceedToCheckout} size="lg" className="w-full max-w-md md:max-w-lg font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold animate-fade-in-up" style={{animationDelay: '0.8s'}}>
             FORJAR MINHA IMAGEM DE PODER
           </Button>
-          <StockCounter />
-           <p className="text-xs mt-4 text-foreground/60">Compra 100% segura. Vagas limitadas para essa condição.</p>
-           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-foreground/60">
+          <div className="animate-fade-in-up" style={{animationDelay: '1s'}}>
+            <StockCounter />
+          </div>
+           <p className="text-xs mt-4 text-foreground/60 animate-fade-in-up" style={{animationDelay: '1.2s'}}>Compra 100% segura. Vagas limitadas para essa condição.</p>
+           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-foreground/60 animate-fade-in-up" style={{animationDelay: '1.4s'}}>
               <span className="text-xs">Role para ver mais</span>
               <ChevronDown className="h-5 w-5 animate-bounce" />
            </div>
         </section>
         
         <section className="py-16 md:py-20 text-center" ref={workshopRef}>
-            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Forja do Respeito</h2>
-            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">Sua imagem atual é apenas o material bruto. Assista à criação da sua nova imagem de poder.</p>
-            <Card className="max-w-lg mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300">
+            <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4 animate-fade-in-up">A Forja do Respeito</h2>
+            <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12 animate-fade-in-up" style={{ animationDelay: '200ms' }}>Sua imagem atual é apenas o material bruto. Assista à criação da sua nova imagem de poder.</p>
+            <Card className="max-w-lg mx-auto bg-card/80 border border-primary/30 p-2 group shadow-2xl shadow-primary/20 transition-shadow duration-300 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
                 <ArtisanWorkshop
                     startAnimation={workshopInView}
                     finalImage="https://i.imgur.com/5jkszP7.png"
@@ -206,10 +208,10 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         </section>
 
         <section className="py-16 md:py-20">
-           <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4">A Ferramenta Definitiva para o Homem de Respeito</h2>
-           <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12">O COMBO Dominante Supreme™ não é um acessório. É uma declaração. A peça que faltava para solidificar sua imagem de sucesso e autoridade.</p>
+           <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-4 animate-fade-in-up">A Ferramenta Definitiva para o Homem de Respeito</h2>
+           <p className="text-center text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12 animate-fade-in-up" style={{ animationDelay: '200ms' }}>O COMBO Dominante Supreme™ não é um acessório. É uma declaração. A peça que faltava para solidificar sua imagem de sucesso e autoridade.</p>
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="w-full h-auto mb-5">
+            <div className="w-full h-auto mb-5 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
                 <ProductImage
                 src="https://i.imgur.com/cfbV6b0.png"
                 alt="Relógio do COMBO Dominante Supreme™"
@@ -219,28 +221,30 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 className="hover:scale-105 transition-transform duration-300 w-full h-auto mb-5"
                 />
             </div>
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-left animate-fade-in-up" style={{ animationDelay: '500ms' }}>
               <h3 className="font-headline text-3xl md:text-4xl text-primary">⌚ Relógio VALOIR™</h3>
               <p className="mt-4 text-lg text-foreground/80">Um relógio marcante com pulseira de aço inoxidável, mostrador elegante e vidro resistente a riscos. Perfeito para quem quer se destacar com estilo e presença. Combina com qualquer ocasião, do casual ao sofisticado.</p>
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mt-12">
-             <div className="text-center md:text-right md:order-2">
+             <div className="text-center md:text-right md:order-2 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
               <h3 className="font-headline text-3xl md:text-4xl text-primary">🔗 Corrente VALOIR™</h3>
               <p className="mt-4 text-lg text-foreground/80">Corrente estilo cubana banhada a ouro 18K, com 5mm de espessura e acabamento premium. Brilho impressionante, feita para transmitir respeito, confiança e autoridade. Ideal para completar seu visual com atitude.</p>
             </div>
-            <ProductImage
-              src="https://i.imgur.com/LrEQVOb.jpeg"
-              alt="Corrente do COMBO Dominante Supreme™"
-              width={600}
-              height={600}
-              hint="gold chain man"
-              className="hover:scale-105 transition-transform duration-300 md:order-1"
-            />
+            <div className='md:order-1 animate-fade-in-up' style={{ animationDelay: '400ms' }}>
+                <ProductImage
+                src="https://i.imgur.com/LrEQVOb.jpeg"
+                alt="Corrente do COMBO Dominante Supreme™"
+                width={600}
+                height={600}
+                hint="gold chain man"
+                className="hover:scale-105 transition-transform duration-300"
+                />
+            </div>
           </div>
         </section>
 
-        <section className="py-16 md:py-20 text-center">
+        <section className="py-16 md:py-20 text-center animate-fade-in-up">
             <h2 className="font-headline text-4xl md:text-5xl text-foreground">Sua Oportunidade Única de Ascensão</h2>
             <p className="text-lg md:text-xl text-foreground/80 mt-2 max-w-2xl mx-auto">Você provou seu potencial no desafio. Agora, reivindique sua recompensa.</p>
             <Card className="mt-8 max-w-2xl mx-auto bg-card/50 border-2 border-dashed border-primary/50 p-6 md:p-8">
@@ -269,7 +273,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
         </section>
 
         <section className="py-16 md:py-20">
-          <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-12">Quem Compra, Domina. Quem Espera, Assiste.</h2>
+          <h2 className="text-center font-headline text-4xl md:text-5xl text-foreground mb-12 animate-fade-in-up">Quem Compra, Domina. Quem Espera, Assiste.</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((item, index) => (
               <Card key={index} className="bg-card/50 border-primary/20 p-6 text-center animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`}}>
@@ -283,7 +287,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           </div>
         </section>
         
-        <section className="py-16 md:py-20">
+        <section className="py-16 md:py-20 animate-fade-in-up">
             <Card className="bg-card/50 border-2 border-primary/50 max-w-4xl mx-auto p-6 md:p-12 shadow-[0_0_30px_theme(colors.primary/0.2)]">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="text-center md:text-left">
@@ -298,7 +302,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             </Card>
         </section>
 
-        <section className="text-center py-16 md:py-20">
+        <section className="text-center py-16 md:py-20 animate-fade-in-up">
             <div className="flex items-center justify-center gap-4 mb-4 text-destructive animate-pulse">
               <AlarmClock className="h-10 w-10"/>
               <CountdownTimer initialMinutes={5} className="font-mono text-3xl md:text-4xl font-bold tracking-widest" />
