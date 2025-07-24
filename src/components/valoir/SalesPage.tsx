@@ -10,7 +10,7 @@ import ProductImage from './ProductImage';
 import ArtisanWorkshop from './ArtisanWorkshop';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
-import DivineProductReveal from './DivineProductReveal';
+import VideoPlayer from './VideoPlayer';
 import { Progress } from '../ui/progress';
 
 
@@ -169,10 +169,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
           </div>
           
-          <DivineProductReveal 
-              src="https://i.imgur.com/YT3WDfI.png"
-              hint="product box"
-          />
+          <VideoPlayer src="https://i.imgur.com/s3q6b3e.mp4" />
 
           <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl text-foreground tracking-wider text-shadow-gold mt-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             Sua Imagem de Poder, Forjada em Aço e Ouro.
