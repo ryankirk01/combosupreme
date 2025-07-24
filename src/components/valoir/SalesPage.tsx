@@ -189,7 +189,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
             <StockCounter />
           </div>
            <p className="text-xs mt-4 text-foreground/60 animate-fade-in-up" style={{animationDelay: '1.2s'}}>Compra 100% segura. Vagas limitadas para essa condição.</p>
-           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-foreground/60 animate-fade-in-up" style={{animationDelay: '1.4s'}}>
+           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full px-4 flex flex-col items-center gap-1 text-foreground/60 animate-fade-in-up" style={{animationDelay: '1.4s'}}>
               <span className="text-xs">Role para ver mais</span>
               <ChevronDown className="h-5 w-5 animate-bounce" />
            </div>
