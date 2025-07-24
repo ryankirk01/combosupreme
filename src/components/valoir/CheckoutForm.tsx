@@ -17,7 +17,7 @@ const models = {
   soberano: {
     name: 'Modelo Soberano',
     description: 'O elegante prateado para um visual sofisticado e moderno.',
-    price: 'R$ 67,00',
+    price: 'R$ 47,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b',
     image: 'https://i.imgur.com/VJALsDQ.png',
     hint: 'gold watch chain',
@@ -27,12 +27,12 @@ const models = {
   executivo: {
     name: 'Modelo Executivo',
     description: 'O clássico dourado para máxima imponência e destaque.',
-    price: 'R$ 67,00',
+    price: 'R$ 47,00',
     checkoutUrl: 'https://app.freepaybr.com/payment/checkout/530573f0-3d0d-47d5-81fd-9c5b539d4e82',
     image: 'https://i.imgur.com/PhXHR3F.png',
     hint: 'silver watch chain',
     benefitIcon: Zap,
-    benefittext: 'Sofisticação e Modernidade'
+    benefitText: 'Sofisticação e Modernidade'
   },
 };
 
@@ -87,7 +87,7 @@ export default function CheckoutForm({ score }: CheckoutFormProps) {
               />
               <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 px-3 py-1 rounded-full border border-border">
                   <model.benefitIcon className="h-4 w-4 text-primary" />
-                  <span>{model.benefitText || model.benefittext}</span>
+                  <span>{model.benefitText}</span>
               </div>
               <p className="font-headline text-4xl text-primary">{model.price}</p>
             </CardContent>

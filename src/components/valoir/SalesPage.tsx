@@ -177,7 +177,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
           <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl text-foreground tracking-wider text-shadow-gold mt-8">
             Sua Imagem de Poder, Forjada em Aço e Ouro.
           </h2>
-          <p className="font-body text-lg md:text-xl lg:text-2xl mt-4 text-foreground/80 max-w-2xl">De <span className="line-through">R$299</span> por apenas <span className="text-primary font-bold">R$67</span>. Pague com PIX e receba o respeito que você merece.</p>
+          <p className="font-body text-lg md:text-xl lg:text-2xl mt-4 text-foreground/80 max-w-2xl">De <span className="line-through">R$299</span> por apenas <span className="text-primary font-bold">R$47</span>. Pague com PIX e receba o respeito que você merece.</p>
           <div className="my-8 bg-card/50 border border-primary/20 rounded-lg p-4 flex flex-col items-center gap-2">
             <p className="text-sm text-primary/80">OFERTA EXCLUSIVA TERMINA EM:</p>
             <CountdownTimer initialMinutes={15} className="font-mono text-3xl md:text-4xl text-primary font-bold" />
@@ -255,7 +255,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                 ) : (
                     <div className="animate-fade-in-up">
                        <h3 className="font-headline text-2xl md:text-3xl text-primary">PARABÉNS! ACESSO LIBERADO.</h3>
-                       <p className="text-lg md:text-xl mt-2">Você desbloqueou <span className="font-bold text-primary">77% DE DESCONTO</span>. Seu preço final é <span className="font-bold text-primary">R$67</span>.</p>
+                       <p className="text-lg md:text-xl mt-2">Você desbloqueou <span className="font-bold text-primary">84% DE DESCONTO</span>. Seu preço final é <span className="font-bold text-primary">R$47</span>.</p>
                        <p className="text-muted-foreground mt-2 text-sm">(Esta oferta é pessoal, intransferível e válida apenas agora)</p>
                        <Button onClick={handleProceedToCheckout} size="lg" className={cn(
                           "mt-8 font-headline tracking-widest animate-pulse-glow shadow-gold",
@@ -313,7 +313,7 @@ export default function SalesPage({ quizAnswers, onCheckout }: SalesPageProps) {
                     <p className="font-bold text-2xl text-foreground">PAGAMENTO 100% SEGURO VIA PIX</p>
                  </div>
                  <Button onClick={handleProceedToCheckout} size="lg" className="w-full font-headline text-xl md:text-2xl tracking-widest px-10 py-7 md:px-12 md:py-8 animate-pulse-glow shadow-gold">
-                   FINALIZAR PEDIDO COM 77% OFF
+                   FINALIZAR PEDIDO COM 84% OFF
                  </Button>
                  <p className="text-xs mt-4 text-foreground/60">Pagamento processado pela FreePay, a plataforma mais segura do Brasil.</p>
             </Card>

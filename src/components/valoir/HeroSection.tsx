@@ -23,7 +23,7 @@ export default function HeroSection({ onStart }: HeroSectionProps) {
 
       <p className="mt-6 text-base md:text-lg max-w-xl text-foreground/90">
         Você tem <span className="font-bold text-primary">3 minutos</span> para provar que é digno de respeito.
-        Desbloqueie o <span className="font-bold">COMBO SUPREME</span> e entre para a elite por apenas <span className="font-bold text-primary">R$67</span>.
+        Desbloqueie o <span className="font-bold">COMBO SUPREME</span> e entre para a elite por apenas <span className="font-bold text-primary">R$47</span>.
         Sua imagem muda agora.
       </p>
       
