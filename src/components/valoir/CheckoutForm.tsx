@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -18,7 +17,7 @@ const models = {
     name: 'Modelo Soberano',
     description: 'O elegante prateado para um visual sofisticado e moderno.',
     price: 'R$ 47,00',
-    checkoutUrl: 'https://app.freepaybr.com/payment/checkout/1bcd8078-318b-4ac6-bac4-93e8b519a39b',
+    checkoutUrl: 'https://pay.ofetaespeciall.online/mwK436d9EX4GQ8b',
     image: 'https://i.imgur.com/VJALsDQ.png',
     hint: 'gold watch chain',
     benefitIcon: Zap,
@@ -28,7 +27,7 @@ const models = {
     name: 'Modelo Executivo',
     description: 'O clássico dourado para máxima imponência e destaque.',
     price: 'R$ 47,00',
-    checkoutUrl: 'https://app.freepaybr.com/payment/checkout/530573f0-3d0d-47d5-81fd-9c5b539d4e82',
+    checkoutUrl: 'https://pay.ofetaespeciall.online/eApQgz2PWAVgEb7',
     image: 'https://i.imgur.com/PhXHR3F.png',
     hint: 'silver watch chain',
     benefitIcon: Eye,
